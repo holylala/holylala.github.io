@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>holylala</title>
+  <title>HEXO+Github,搭建属于自己的个性化的博客 | holylala</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="person blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="holylala">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="本教程在Win10上完成的示例,Mac环境可同时参考：http://www.jianshu.com/p/465830080ea9 一.环境准备安装  Node.js1下载地址 https://nodejs.org/en/ 安装 Git1Git-1.9.5-preview20150319.exe 配置Git环境变量：123Path:..\Git\bin..\Git\libexec\git-core">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HEXO+Github,搭建属于自己的个性化的博客">
+<meta property="og:url" content="http://yoursite.com/2017/04/08/create-blog-by-hexo/index.html">
 <meta property="og:site_name" content="holylala">
-<meta property="og:description" content="person blog">
+<meta property="og:description" content="本教程在Win10上完成的示例,Mac环境可同时参考：http://www.jianshu.com/p/465830080ea9 一.环境准备安装  Node.js1下载地址 https://nodejs.org/en/ 安装 Git1Git-1.9.5-preview20150319.exe 配置Git环境变量：123Path:..\Git\bin..\Git\libexec\git-core">
+<meta property="og:updated_time" content="2017-04-08T14:37:09.327Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="holylala">
-<meta name="twitter:description" content="person blog">
+<meta name="twitter:title" content="HEXO+Github,搭建属于自己的个性化的博客">
+<meta name="twitter:description" content="本教程在Win10上完成的示例,Mac环境可同时参考：http://www.jianshu.com/p/465830080ea9 一.环境准备安装  Node.js1下载地址 https://nodejs.org/en/ 安装 Git1Git-1.9.5-preview20150319.exe 配置Git环境变量：123Path:..\Git\bin..\Git\libexec\git-core">
   
     <link rel="alternate" href="/atom.xml" title="holylala" type="application/atom+xml">
   
@@ -36,7 +38,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">香蕉牌苹果</a>
+        <a href="/" id="logo">holylala</a>
       </h1>
       
     </div>
@@ -62,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-create-blog-by-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-create-blog-by-hexo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/08/create-blog-by-hexo/" class="article-date">
   <time datetime="2017-04-08T14:05:00.155Z" itemprop="datePublished">2017-04-08</time>
@@ -77,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/create-blog-by-hexo/">HEXO+Github,搭建属于自己的个性化的博客</a>
+    <h1 class="article-title" itemprop="name">
+      HEXO+Github,搭建属于自己的个性化的博客
     </h1>
   
 
@@ -104,10 +104,9 @@
     </footer>
   </div>
   
-</article>
-
-
+    
   
+</article>
 
 </section>
         
