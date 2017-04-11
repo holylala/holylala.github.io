@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>香蕉牌苹果</title>
+  <title>Tag: hexo | 香蕉牌苹果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="个人技术博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="香蕉牌苹果">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/hexo/index.html">
 <meta property="og:site_name" content="香蕉牌苹果">
 <meta property="og:description" content="个人技术博客">
 <meta name="twitter:card" content="summary">
@@ -144,48 +144,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-create-blog-by-hexo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/04/08/create-blog-by-hexo/" class="archive-article-date">
+  	<time datetime="2017-04-08T14:05:00.155Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/create-blog-by-hexo/">HEXO+Github,搭建属于自己的个性化的博客</a>
+      <a class="archive-article-title" href="/2017/04/08/create-blog-by-hexo/">HEXO+Github,搭建属于自己的个性化的博客</a>
     </h1>
   
 
-        
-        <a href="/2017/04/08/create-blog-by-hexo/" class="archive-article-date">
-  	<time datetime="2017-04-08T14:05:00.155Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本教程在Win10上完成的示例,Mac环境可同时参考<a href="http://www.jianshu.com/p/465830080ea9" target="_blank" rel="external">&gt;&gt;&gt;&gt;</a></p>
-<h2 id="一-环境准备"><a href="#一-环境准备" class="headerlink" title="一.环境准备"></a>一.环境准备</h2><h3 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装  Node.js"></a>安装  Node.js</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">下载地址 https://nodejs.org/en/</div></pre></td></tr></table></figure>
-<h3 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Git-1.9.5-preview20150319.exe</div></pre></td></tr></table></figure>
-<h3 id="配置Git环境变量："><a href="#配置Git环境变量：" class="headerlink" title="配置Git环境变量："></a>配置Git环境变量：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Path:</div><div class="line">..\Git\bin</div><div class="line">..\Git\libexec\git-core</div></pre></td></tr></table></figure>
-<h3 id="注册Github账户"><a href="#注册Github账户" class="headerlink" title="注册Github账户"></a>注册Github账户</h3><h2 id="二-安装Hexo"><a href="#二-安装Hexo" class="headerlink" title="二.安装Hexo"></a>二.安装Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; 打开 Node.js <span class="built_in">command</span> prompt 控制台 (以管理员身份运行）</div><div class="line">&gt; 执行命令  npm install -g hexo</div><div class="line">&gt;  创建一个文件夹，如：C:\blog，<span class="built_in">cd</span>到blog里执行 :  hexo init</div><div class="line">&gt;  继续再B<span class="built_in">log</span>目录下执行命令:   hexo generate （hexo g 也可以），生成静态页面</div><div class="line">&gt;  启动本地服务，进行文章预览调试 :   hexo server</div><div class="line">&gt; 浏览器输入 http://localhost:4000/</div></pre></td></tr></table></figure>
-<h2 id="三-配置Github"><a href="#三-配置Github" class="headerlink" title="三.配置Github"></a>三.配置Github</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">创建库,库名格式: 用户名.github.io</div></pre></td></tr></table></figure>
-<h2 id="四-配置部署"><a href="#四-配置部署" class="headerlink" title="四.配置部署"></a>四.配置部署</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;在blog目录, 修改  _config.yml文件配置（修改后另存为UTF-8编码）:</div><div class="line"></div><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repository: https://github.com/XXX/XXX.github.io.git</div><div class="line">  branch: master</div><div class="line"></div><div class="line">&gt; 组件安装  ： npm install hexo-deployer-git --save </div><div class="line">&gt;  部署 hexo deploy</div></pre></td></tr></table></figure>
-<h2 id="五-访问"><a href="#五-访问" class="headerlink" title="五.访问"></a>五.访问</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://XXX.github.io/</div></pre></td></tr></table></figure>
-<h2 id="六-一些基本路径"><a href="#六-一些基本路径" class="headerlink" title="六. 一些基本路径"></a>六. 一些基本路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">文章在 <span class="built_in">source</span>/_posts，编辑器可以用 Sublime，支持 markdown 语法。如果想修改头像可以直接在主题的 _config.yml 文件里面修改，友情链接，之类的都在这里，修改名字在 public/index.html 里修改</div></pre></td></tr></table></figure>
-<h2 id="七-常用命令"><a href="#七-常用命令" class="headerlink" title="七.常用命令"></a>七.常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hexo new <span class="string">"postName"</span> <span class="comment">#新建文章，生成指定名称的文章至 hexo\source\_posts\postName.md 编辑器可以用Sublime，支持 markdown 语法                      </span></div><div class="line">hexo new page <span class="string">"pageName"</span> <span class="comment">#新建页面</span></div><div class="line">hexo generate <span class="comment">#生成静态页面至public目录</span></div><div class="line">hexo server <span class="comment">#开启预览访问端口 ,进行文章预览调试（http://localhost:4000/ ，'ctrl + c'关闭server）</span></div><div class="line">hexo deploy <span class="comment">#将.deploy目录部署到GitHub</span></div><div class="line">hexo <span class="built_in">help</span>  <span class="comment">#查看帮助</span></div><div class="line">hexo version  <span class="comment">#查看Hexo的版本</span></div></pre></td></tr></table></figure>
-<h3 id="新增文章-修改文章后-依次执行以下命令"><a href="#新增文章-修改文章后-依次执行以下命令" class="headerlink" title="新增文章 修改文章后 依次执行以下命令"></a>新增文章 修改文章后 依次执行以下命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean <span class="comment">#非必须</span></div><div class="line">hexo generate</div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
-<h2 id="八-更换主题"><a href="#八-更换主题" class="headerlink" title="八.更换主题"></a>八.更换主题</h2><h3 id="主题下载："><a href="#主题下载：" class="headerlink" title="主题下载："></a>主题下载：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</div><div class="line"></div><div class="line">https://github.com/litten/hexo-theme-yilia.git  是主题路径</div><div class="line">themes/yilia 是主题目录 ,目录是否是yilia 无所谓，只要与_config.yml文件中的配置一致即可。 主题很多可自行选择。</div></pre></td></tr></table></figure>
-<h3 id="主题配置修改"><a href="#主题配置修改" class="headerlink" title="主题配置修改"></a>主题配置修改</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">安装完成后，打开 blog\_config.yml ，修改主题为 yilia</div><div class="line"></div><div class="line">theme: yilia</div></pre></td></tr></table></figure>
-<h3 id="主题配置项修改"><a href="#主题配置项修改" class="headerlink" title="主题配置项修改"></a>主题配置项修改</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">打开 blog\themes\yilia 目录，编辑主题配置文件 _config.yml</div></pre></td></tr></table></figure>
-<h3 id="更新主题"><a href="#更新主题" class="headerlink" title="更新主题"></a>更新主题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> themes/yilia</div><div class="line">git pull</div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,29 +187,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/08/create-blog-by-hexo/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-
-
-
-
-
-
   
   
+    </div></section>
+  
+
+    
 
 
           </div>
@@ -245,10 +221,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
