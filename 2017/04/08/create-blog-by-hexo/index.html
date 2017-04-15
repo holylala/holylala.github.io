@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/08/create-blog-by-hexo/index.html">
 <meta property="og:site_name" content="香蕉牌苹果">
 <meta property="og:description" content="本教程在Win10上完成的示例,Mac环境可同时参考&amp;gt;&amp;gt;&amp;gt;&amp;gt; 一.环境准备安装  Node.js1下载地址 https://nodejs.org/en/ 安装 Git1Git-1.9.5-preview20150319.exe 配置Git环境变量：123Path:..\Git\bin..\Git\libexec\git-core 注册Github账户二.安装Hexo1234">
-<meta property="og:updated_time" content="2017-04-14T16:57:06.476Z">
+<meta property="og:updated_time" content="2017-04-15T16:28:17.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HEXO+Github,搭建属于自己的个性化的博客">
 <meta name="twitter:description" content="本教程在Win10上完成的示例,Mac环境可同时参考&amp;gt;&amp;gt;&amp;gt;&amp;gt; 一.环境准备安装  Node.js1下载地址 https://nodejs.org/en/ 安装 Git1Git-1.9.5-preview20150319.exe 配置Git环境变量：123Path:..\Git\bin..\Git\libexec\git-core 注册Github账户二.安装Hexo1234">
@@ -170,6 +170,7 @@
 <h3 id="配置Git环境变量："><a href="#配置Git环境变量：" class="headerlink" title="配置Git环境变量："></a>配置Git环境变量：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Path:</div><div class="line">..\Git\bin</div><div class="line">..\Git\libexec\git-core</div></pre></td></tr></table></figure>
 <h3 id="注册Github账户"><a href="#注册Github账户" class="headerlink" title="注册Github账户"></a>注册Github账户</h3><h2 id="二-安装Hexo"><a href="#二-安装Hexo" class="headerlink" title="二.安装Hexo"></a>二.安装Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; 打开 Node.js <span class="built_in">command</span> prompt 控制台 (以管理员身份运行）</div><div class="line">&gt; 执行命令  npm install -g hexo</div><div class="line">&gt;  创建一个文件夹，如：C:\blog，<span class="built_in">cd</span>到blog里执行 :  hexo init</div><div class="line">&gt;  继续再B<span class="built_in">log</span>目录下执行命令:   hexo generate （hexo g 也可以），生成静态页面</div><div class="line">&gt;  启动本地服务，进行文章预览调试 :   hexo server</div><div class="line">&gt; 浏览器输入 http://localhost:4000/</div></pre></td></tr></table></figure>
 <h2 id="三-配置Github"><a href="#三-配置Github" class="headerlink" title="三.配置Github"></a>三.配置Github</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">创建库,库名格式: 用户名.github.io</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="四-配置部署"><a href="#四-配置部署" class="headerlink" title="四.配置部署"></a>四.配置部署</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;在blog目录, 修改  _config.yml文件配置（修改后另存为UTF-8编码）:</div><div class="line"></div><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repository: https://github.com/XXX/XXX.github.io.git</div><div class="line">  branch: master</div><div class="line"></div><div class="line">&gt; 组件安装  ： npm install hexo-deployer-git --save </div><div class="line">&gt;  部署 hexo deploy</div></pre></td></tr></table></figure>
 <h2 id="五-访问"><a href="#五-访问" class="headerlink" title="五.访问"></a>五.访问</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://XXX.github.io/</div></pre></td></tr></table></figure>
 <h2 id="六-一些基本路径"><a href="#六-一些基本路径" class="headerlink" title="六. 一些基本路径"></a>六. 一些基本路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">文章在 <span class="built_in">source</span>/_posts，编辑器可以用 Sublime，支持 markdown 语法。如果想修改头像可以直接在主题的 _config.yml 文件里面修改，友情链接，之类的都在这里</div></pre></td></tr></table></figure>
@@ -233,57 +234,6 @@
       
 
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/08/create-blog-by-hexo/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
       <div class="clearfix"></div>
     </div>
   </div>
@@ -326,10 +276,10 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: true,
+		open_in_new: false,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -385,6 +335,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
             
             <div class="clearfix"></div>
