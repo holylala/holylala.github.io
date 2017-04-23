@@ -178,8 +178,8 @@
 <li>多个命令之间没有依赖关系,每个命令只需单独执行</li>
 <li>对响应时间要求苛刻</li>
 </ul>
-<h3 id="不使用管道时命令执行示意图（纵向表示时间）"><a href="#不使用管道时命令执行示意图（纵向表示时间）" class="headerlink" title="不使用管道时命令执行示意图（纵向表示时间）"></a>不使用管道时命令执行示意图（纵向表示时间）</h3><p><img src="http://fmn.rrimg.com/fmn075/20170423/1950/original_WXkA_c5fe000e0d351e84.jpg" alt="不使用管道时命令执行示意图"></p>
-<h3 id="使用管道时命令执行示意图"><a href="#使用管道时命令执行示意图" class="headerlink" title="使用管道时命令执行示意图"></a>使用管道时命令执行示意图</h3><p><img src="http://fmn.rrfmn.com/fmn078/20170423/1950/original_vqCb_abc4000c9ea41e7f.jpg" alt="使用管道时命令执行示意图"></p>
+<h3 id="不使用管道时命令执行示意图（纵向表示时间）"><a href="#不使用管道时命令执行示意图（纵向表示时间）" class="headerlink" title="不使用管道时命令执行示意图（纵向表示时间）"></a>不使用管道时命令执行示意图（纵向表示时间）</h3><p><img src="http://oov8bjfvw.bkt.clouddn.com/1.jpg" alt="不使用管道时命令执行示意图"></p>
+<h3 id="使用管道时命令执行示意图"><a href="#使用管道时命令执行示意图" class="headerlink" title="使用管道时命令执行示意图"></a>使用管道时命令执行示意图</h3><p><img src="http://oov8bjfvw.bkt.clouddn.com/2.jpg" alt="使用管道时命令执行示意图"></p>
 <h2 id="java代码示例"><a href="#java代码示例" class="headerlink" title="java代码示例"></a>java代码示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">redisClient.executionPipelinedExt(<span class="keyword">new</span> Redis.JedisResultTask&lt;Object&gt;() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">protected</span> Object <span class="title">doExecution</span><span class="params">(Jedis jedis)</span> </span>&#123;</div><div class="line">              Pipeline pipeline = jedis.pipelined();</div><div class="line">              </div><div class="line">              pipeline.set(“key1”,“value1”);</div><div class="line">              pipeline.set(“key2”,“value2”);</div><div class="line">              pipeline.set(“key3”,“value3”);</div><div class="line">		...</div><div class="line">              pipeline.sync();</div><div class="line">              <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">          &#125;</div><div class="line">      &#125;);</div></pre></td></tr></table></figure>
 <h2 id="Python代码示例-使用redis-py"><a href="#Python代码示例-使用redis-py" class="headerlink" title="Python代码示例(使用redis-py)"></a>Python代码示例(使用<a href="http://redis-py.readthedocs.io/en/latest/">redis-py</a>)</h2>
         
@@ -387,6 +387,14 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
@@ -396,14 +404,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
             
             <div class="clearfix"></div>
