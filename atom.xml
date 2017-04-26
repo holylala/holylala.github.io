@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>香蕉牌苹果</title>
-  <subtitle>Senior Software Engineer</subtitle>
+  <subtitle>Senior Web Backend Engineer</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
@@ -9,7 +9,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>香蕉牌苹果</name>
+    <name>香蕉牌苹果 今日访问量:27次 总访问量:431次</name>
     
   </author>
   
