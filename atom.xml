@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-23T14:19:04.890Z</updated>
+  <updated>2017-04-28T16:18:08.559Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在redis中使用Lua脚本</title>
+    <link href="http://yoursite.com/2017/04/28/redis-uselua/"/>
+    <id>http://yoursite.com/2017/04/28/redis-uselua/</id>
+    <published>2017-04-28T15:40:21.000Z</published>
+    <updated>2017-04-28T16:18:08.559Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="脚本介绍"><a href="#脚本介绍" class="headerlink" title="脚本介绍"></a>脚本介绍</h2><p>Redis在2.6版本中推出了脚本功能,使用Lua语言(一种“卫星语言”,能够方便地嵌入到其他语言中使用)编写脚本传到Redis中执行。在Lua脚本中可以调用大部分的Redis命令,使用脚本的好处如下:</p>
+<ul>
+<li><p>减少网络开销: 多个redis请求可以在一个脚本中一次发送一个请求,减少网络往返时延。</p>
+</li>
+<li><p>原子操作: Redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。编写脚本的<br>过程中无需担心会出现竞态条件,也就无需使用事务。事务可以完成的所有功能都可以用脚本实现。</p>
+</li>
+<li><p>复用: 客户端发送的脚本会永久存储在Redis中,其他语言开发的项目可以复用之。</p>
+</li>
+</ul>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><a id="more"></a>
+<h3 id="1-访问频率限制"><a href="#1-访问频率限制" class="headerlink" title="1.访问频率限制"></a>1.访问频率限制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> <span class="built_in">times</span> = redis.call(<span class="string">'incr'</span>,KEYS[1])</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="built_in">times</span> == 1 <span class="keyword">then</span> </div><div class="line"><span class="comment">#KEYS[1]键刚创建,所以为其设置生存时间</span></div><div class="line">redis.call(<span class="string">'expire'</span>,KEYS[1],ARGV[1])</div><div class="line">end </div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="built_in">times</span> &gt; tonumber(ARGV[2]) <span class="keyword">then</span>	</div><div class="line"><span class="built_in">return</span> 0</div><div class="line">end </div><div class="line"></div><div class="line"><span class="built_in">return</span> 1</div></pre></td></tr></table></figure>
+<h3 id="2-解决抢红包高并发的问题"><a href="#2-解决抢红包高并发的问题" class="headerlink" title="2.解决抢红包高并发的问题"></a>2.解决抢红包高并发的问题</h3><p><a href="http://blog.csdn.net/hengyunabc/article/details/19433779/" target="_blank" rel="external">传送门</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;脚本介绍&quot;&gt;&lt;a href=&quot;#脚本介绍&quot; class=&quot;headerlink&quot; title=&quot;脚本介绍&quot;&gt;&lt;/a&gt;脚本介绍&lt;/h2&gt;&lt;p&gt;Redis在2.6版本中推出了脚本功能,使用Lua语言(一种“卫星语言”,能够方便地嵌入到其他语言中使用)编写脚本传到Redis中执行。在Lua脚本中可以调用大部分的Redis命令,使用脚本的好处如下:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;减少网络开销: 多个redis请求可以在一个脚本中一次发送一个请求,减少网络往返时延。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;原子操作: Redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。编写脚本的&lt;br&gt;过程中无需担心会出现竞态条件,也就无需使用事务。事务可以完成的所有功能都可以用脚本实现。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;复用: 客户端发送的脚本会永久存储在Redis中,其他语言开发的项目可以复用之。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;代码示例&quot;&gt;&lt;a href=&quot;#代码示例&quot; class=&quot;headerlink&quot; title=&quot;代码示例&quot;&gt;&lt;/a&gt;代码示例&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="http://yoursite.com/tags/redis/"/>
+    
+      <category term="Lua" scheme="http://yoursite.com/tags/Lua/"/>
+    
+  </entry>
   
   <entry>
     <title>在Redis中使用管道</title>
