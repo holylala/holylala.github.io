@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-29T10:33:32.312Z</updated>
+  <updated>2017-04-29T11:58:46.506Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>搭建Python开发环境(win10)</title>
+    <link href="http://yoursite.com/2017/04/29/build-python-devenv/"/>
+    <id>http://yoursite.com/2017/04/29/build-python-devenv/</id>
+    <published>2017-04-29T10:44:31.000Z</published>
+    <updated>2017-04-29T11:58:46.506Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="安装Anaconda2"><a href="#安装Anaconda2" class="headerlink" title="安装Anaconda2"></a>安装Anaconda2</h3><ul>
+<li><p>版本: 4.3.1-Windows-x86_64 (选择Python3.6 or Python2.7)</p>
+</li>
+<li><p>安装地址: <a href="https://www.continuum.io/downloads#windows" target="_blank" rel="external">&gt;&gt;</a></p>
+</li>
+</ul>
+<h3 id="安装-JetBrains-PyCharm"><a href="#安装-JetBrains-PyCharm" class="headerlink" title="安装 JetBrains PyCharm"></a>安装 JetBrains PyCharm</h3><ul>
+<li>版本: PyCharm Professional Edition</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>安装地址: <a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="external">&gt;&gt;</a>, 安装时选择自动配置Python环境变量</li>
+</ul>
+<h3 id="PyCharm设置"><a href="#PyCharm设置" class="headerlink" title="PyCharm设置"></a>PyCharm设置</h3><ul>
+<li>在New Project的Interpreter中指定python.exe路径</li>
+</ul>
+<h3 id="Anaconda常用命令"><a href="#Anaconda常用命令" class="headerlink" title="Anaconda常用命令"></a>Anaconda常用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">python --vesion </div><div class="line"></div><div class="line">ipython <span class="comment">#交互式命令行 Shell</span></div><div class="line"> </div><div class="line">jupyter notebook  <span class="comment">#cd到.ipynb文件目录 启动jupyter</span></div><div class="line"></div><div class="line"><span class="built_in">exit</span></div></pre></td></tr></table></figure>
+<p>让Python带你飞</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;安装Anaconda2&quot;&gt;&lt;a href=&quot;#安装Anaconda2&quot; class=&quot;headerlink&quot; title=&quot;安装Anaconda2&quot;&gt;&lt;/a&gt;安装Anaconda2&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;版本: 4.3.1-Windows-x86_64 (选择Python3.6 or Python2.7)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装地址: &lt;a href=&quot;https://www.continuum.io/downloads#windows&quot;&gt;&amp;gt;&amp;gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;安装-JetBrains-PyCharm&quot;&gt;&lt;a href=&quot;#安装-JetBrains-PyCharm&quot; class=&quot;headerlink&quot; title=&quot;安装 JetBrains PyCharm&quot;&gt;&lt;/a&gt;安装 JetBrains PyCharm&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;版本: PyCharm Professional Edition&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>在redis中使用Lua脚本</title>
