@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: java | 香蕉牌苹果</title>
+  <title>Python数据分析:Kaggle案例之StarCraft II Replay Analysis | 香蕉牌苹果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="香蕉牌苹果">
-<meta property="og:url" content="http://yoursite.com/tags/java/index.html">
+  <meta name="description" content="1.Project Detail 项目地址: &amp;gt;&amp;gt;&amp;gt;  数据来源: 下载 starcraft.csv(This dataset is an aggregate of the screen-fixations from screen movements of StarCraft 2 replay files) , 共21列数据  Inspiration: 分析每个战队的APM(Ac">
+<meta name="keywords" content="python,纯代码,kaggle,matplotlib,pandas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据分析:Kaggle案例之StarCraft II Replay Analysis">
+<meta property="og:url" content="http://yoursite.com/2017/05/14/python-da-kagglepro-starwar/index.html">
 <meta property="og:site_name" content="香蕉牌苹果">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="1.Project Detail 项目地址: &amp;gt;&amp;gt;&amp;gt;  数据来源: 下载 starcraft.csv(This dataset is an aggregate of the screen-fixations from screen movements of StarCraft 2 replay files) , 共21列数据  Inspiration: 分析每个战队的APM(Ac">
+<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/zhandui.png?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/zhandui1.png?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/zhandui2.png?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta property="og:updated_time" content="2017-05-14T16:12:29.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="香蕉牌苹果">
-<meta name="twitter:description" content="个人技术博客">
+<meta name="twitter:title" content="Python数据分析:Kaggle案例之StarCraft II Replay Analysis">
+<meta name="twitter:description" content="1.Project Detail 项目地址: &amp;gt;&amp;gt;&amp;gt;  数据来源: 下载 starcraft.csv(This dataset is an aggregate of the screen-fixations from screen movements of StarCraft 2 replay files) , 共21列数据  Inspiration: 分析每个战队的APM(Ac">
+<meta name="twitter:image" content="http://oov8bjfvw.bkt.clouddn.com/zhandui.png?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
   
     <link rel="alternative" href="/atom.xml" title="香蕉牌苹果" type="application/atom+xml">
   
@@ -150,36 +156,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-python-da-kagglepro-starwar" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/23/redis-usepip/" class="archive-article-date">
-  	<time datetime="2017-04-23T11:12:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/23/redis-usepip/">在Redis中使用管道</a>
+    <h1 class="article-title" itemprop="name">
+      Python数据分析:Kaggle案例之StarCraft II Replay Analysis
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/05/14/python-da-kagglepro-starwar/" class="archive-article-date">
+  	<time datetime="2017-05-14T15:37:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Project-Detail"><a href="#1-Project-Detail" class="headerlink" title="1.Project Detail"></a>1.Project Detail</h3><ul>
+<li><p>项目地址: <a href="https://www.kaggle.com/sfu-summit/starcraft-ii-replay-analysis" target="_blank" rel="external">&gt;&gt;&gt;</a></p>
+</li>
+<li><p>数据来源: 下载 starcraft.csv(This dataset is an aggregate of the screen-fixations from screen movements of StarCraft 2 replay files) , 共21列数据</p>
+</li>
+<li><p>Inspiration: 分析每个战队的APM(Action per minute)和HoursPerWeek(Hours spent playing per week)</p>
+</li>
+</ul>
+<h3 id="2-Code-Say"><a href="#2-Code-Say" class="headerlink" title="2.Code Say"></a>2.Code Say</h3><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="comment"># main.py</span></div><div class="line"><span class="comment"># 引入必要的库 pandas_tools:封装的工具</span></div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">from</span> pandas_tools <span class="keyword">import</span> inspect_dataset, visualize_league_attributes,\</div><div class="line">    visualize_league_attribute_stats, process_missing_data</div><div class="line"></div><div class="line">dataset_path = <span class="string">'./dataset/starcraft.csv'</span> <span class="comment">##指定需要分析数据文件路径</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_main</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">            主函数</div><div class="line">    """</div><div class="line">    </div><div class="line">    <span class="comment">## Step.0 加载数据</span></div><div class="line">    df_data = pd.read_csv(dataset_path)</div><div class="line">    </div><div class="line">    <span class="comment">## Step.1 查看数据 数据预览</span></div><div class="line">    inspect_dataset(df_data)</div><div class="line">    </div><div class="line">    <span class="comment">## Step.2 处理缺失数据 设置默认值</span></div><div class="line">    df_data = process_missing_data(df_data)</div><div class="line">    </div><div class="line">    <span class="comment">## Step.3.1 可视化战队属性，散点图</span></div><div class="line">    column_names = [<span class="string">'LeagueIndex'</span>,  <span class="comment"># 战队索引号</span></div><div class="line">                    <span class="string">'HoursPerWeek'</span>, <span class="comment"># 每周游戏时间</span></div><div class="line">                    <span class="string">'Age'</span>,          <span class="comment"># 战队中玩家的年龄</span></div><div class="line">                    <span class="string">'APM'</span>,          <span class="comment"># 操作速度(技术能力)</span></div><div class="line">                    <span class="string">'WorkersMade'</span>   <span class="comment"># 单位时间的建造数</span></div><div class="line">                    ]</div><div class="line">    visualize_league_attributes(df_data[column_names]) <span class="comment">## list 不连续索引</span></div><div class="line">    </div><div class="line">    <span class="comment">## Step3.2 可视化战队属性统计值</span></div><div class="line">    visualize_league_attribute_stats(df_data[column_names], </div><div class="line">                                     <span class="string">'APM'</span>,</div><div class="line">                                     savedata_path=<span class="string">'./league_apm_stats.csv'</span>,</div><div class="line">                                     savefig_path=<span class="string">'./league_apm_stats.png'</span>,)</div><div class="line">    </div><div class="line">    visualize_league_attribute_stats(df_data[column_names], </div><div class="line">                                     <span class="string">'HoursPerWeek'</span>,</div><div class="line">                                     savedata_path=<span class="string">'./league_hrs_stats.csv'</span>,</div><div class="line">                                     savefig_path=<span class="string">'./league_hrs_stats.png'</span>,)</div><div class="line">    </div><div class="line"><span class="comment"># 运行入口</span></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    run_main()</div><div class="line"></div><div class="line"><span class="comment"># ---------------------------------------------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="comment"># pandas_tools.py</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> matplotlib.patches <span class="keyword">as</span> mpatches</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">inspect_dataset</span><span class="params">(df_data)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">            查看加载的数据基本信息</div><div class="line">    """</div><div class="line">    <span class="keyword">print</span> <span class="string">'数据集基本信息：'</span></div><div class="line">    <span class="keyword">print</span> df_data.info()</div><div class="line">    </div><div class="line">    <span class="keyword">print</span> <span class="string">'数据集有%i行，%i列'</span> %(df_data.shape[<span class="number">0</span>], df_data.shape[<span class="number">1</span>])</div><div class="line">    <span class="keyword">print</span> <span class="string">'数据预览:'</span></div><div class="line">    <span class="keyword">print</span> df_data.head()</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_missing_data</span><span class="params">(df_data)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">            处理缺失数据</div><div class="line">    """</div><div class="line">    <span class="keyword">if</span> df_data.isnull().values.any():</div><div class="line">        <span class="comment"># 存在缺失数据</span></div><div class="line">        df_data = df_data.fillna(<span class="number">0.</span>)    <span class="comment"># 填充nan</span></div><div class="line"><span class="comment">#         df_data = df_data.dropna()    # 过滤nan</span></div><div class="line">    </div><div class="line">    <span class="keyword">return</span> df_data</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">visualize_league_attributes</span><span class="params">(df_data, save_fig = True)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">            可视化战队属性</div><div class="line">    """</div><div class="line">    <span class="comment"># 创建figure  放四张图</span></div><div class="line">    fig = plt.figure(figsize=(<span class="number">15.0</span>, <span class="number">10.0</span>))</div><div class="line">    ax1 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>)</div><div class="line">    ax2 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>)</div><div class="line">    ax3 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>)</div><div class="line">    ax4 = fig.add_subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>)</div><div class="line">    </div><div class="line">    <span class="comment"># 解决matplotlib显示中文问题</span></div><div class="line">    plt.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'SimHei'</span>] <span class="comment">#指定默认字体  </span></div><div class="line">    plt.rcParams[<span class="string">'axes.unicode_minus'</span>] = <span class="keyword">False</span> <span class="comment">#解决保存图像是负号'-'显示为方块的问题</span></div><div class="line">    </div><div class="line">    fig.suptitle(<span class="string">u'战队属性'</span>) <span class="comment">#给图起个标题</span></div><div class="line"></div><div class="line">    <span class="comment"># 画散点图  横轴战队 纵轴每周游戏时间</span></div><div class="line">    ax1.scatter(df_data[<span class="string">'LeagueIndex'</span>], df_data[<span class="string">'HoursPerWeek'</span>])</div><div class="line">    ax1.set_xlabel(<span class="string">u'战队'</span>)</div><div class="line">    ax1.set_ylabel(<span class="string">u'每周游戏时间'</span>)</div><div class="line"></div><div class="line">    ax2.scatter(df_data[<span class="string">'LeagueIndex'</span>], df_data[<span class="string">'Age'</span>])</div><div class="line">    ax2.set_xlabel(<span class="string">u'战队'</span>)</div><div class="line">    ax2.set_ylabel(<span class="string">u'玩家年龄'</span>)</div><div class="line">    </div><div class="line">    ax3.scatter(df_data[<span class="string">'LeagueIndex'</span>], df_data[<span class="string">'APM'</span>])</div><div class="line">    ax3.set_xlabel(<span class="string">u'战队'</span>)</div><div class="line">    ax3.set_ylabel(<span class="string">u'APM'</span>)</div><div class="line">    </div><div class="line">    ax4.scatter(df_data[<span class="string">'LeagueIndex'</span>], df_data[<span class="string">'WorkersMade'</span>])</div><div class="line">    ax4.set_xlabel(<span class="string">u'战队'</span>)</div><div class="line">    ax4.set_ylabel(<span class="string">u'单位时间建造数'</span>)</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> save_fig:</div><div class="line">        plt.savefig(<span class="string">'./league_attributes.png'</span>) <span class="comment">#数据存储</span></div><div class="line">        </div><div class="line">    plt.show()</div><div class="line">    </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">visualize_league_attribute_stats</span><span class="params">(df_data, attr_label, </span></span></div><div class="line">                                     savedata_path = <span class="string">''</span>,</div><div class="line">                                     savefig_path = <span class="string">''</span>):</div><div class="line">    <span class="string">"""</span></div><div class="line">           可视化战队属性统计值  1到8 战队数</div><div class="line">    """</div><div class="line">    league_idx_lst = range(<span class="number">1</span>,<span class="number">9</span>)</div><div class="line"></div><div class="line">    <span class="comment"># 统计最小值 最大值 和均值</span></div><div class="line">    stats_min = []</div><div class="line">    stats_max = []</div><div class="line">    stats_mean = []</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> league_idx <span class="keyword">in</span> league_idx_lst: <span class="comment"># 处理每一个战队的数据</span></div><div class="line">        <span class="comment"># 数据选取 loc 标签索引 df_data['LeagueIndex'] == league_idx 行索引,true or false 只取满足条件的数据 attr_label:列索引</span></div><div class="line">        filtered_data = df_data.loc[df_data[<span class="string">'LeagueIndex'</span>] == league_idx, attr_label]</div><div class="line">        </div><div class="line">        stats_min.append(filtered_data.min())</div><div class="line">        stats_max.append(filtered_data.max())</div><div class="line">        stats_mean.append(filtered_data.mean())</div><div class="line">        </div><div class="line">    league_ser = pd.Series(league_idx_lst, name=<span class="string">'LeagueIndex'</span>) <span class="comment"># 把各战队编号list变成series</span></div><div class="line">    stats_min_ser = pd.Series(stats_min, name=<span class="string">'min'</span>) <span class="comment"># 把各战队统计数据list变成series</span></div><div class="line">    stats_max_ser = pd.Series(stats_max, name=<span class="string">'max'</span>)</div><div class="line">    stats_mean_ser = pd.Series(stats_mean, name=<span class="string">'mean'</span>)</div><div class="line"></div><div class="line">    <span class="comment">#把Series拼装成DataFrame axis=1 指定轴方向 横向拼接</span></div><div class="line">    df_result = pd.concat([league_ser, stats_min_ser, stats_max_ser, stats_mean_ser], axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">    <span class="comment">#数据保存</span></div><div class="line">    <span class="keyword">if</span> savedata_path != <span class="string">''</span>:</div><div class="line">        df_result.to_csv(savedata_path, index=<span class="keyword">None</span>)</div><div class="line">    </div><div class="line">    <span class="comment"># 统计值可视化    </span></div><div class="line">    <span class="comment"># 创建figure</span></div><div class="line">    fig = plt.figure(figsize=(<span class="number">15.0</span>, <span class="number">10.0</span>))</div><div class="line">    fig.add_subplot(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</div><div class="line">    </div><div class="line">    <span class="comment"># 解决matplotlib显示中文问题</span></div><div class="line">    plt.rcParams[<span class="string">'font.sans-serif'</span>] = [<span class="string">'SimHei'</span>] <span class="comment">#指定默认字体  </span></div><div class="line">    plt.rcParams[<span class="string">'axes.unicode_minus'</span>] = <span class="keyword">False</span> <span class="comment">#解决保存图像是负号'-'显示为方块的问题</span></div><div class="line">    </div><div class="line">    plt.plot(df_result[<span class="string">'LeagueIndex'</span>], df_result[<span class="string">'mean'</span>], color=<span class="string">'b'</span>)</div><div class="line">    plt.plot(df_result[<span class="string">'LeagueIndex'</span>], df_result[<span class="string">'min'</span>], color=<span class="string">'g'</span>)</div><div class="line">    plt.plot(df_result[<span class="string">'LeagueIndex'</span>], df_result[<span class="string">'max'</span>], color=<span class="string">'r'</span>)</div><div class="line">    plt.xlabel(<span class="string">u"战队"</span>)</div><div class="line">    plt.ylabel(attr_label)</div><div class="line">    plt.title(attr_label + <span class="string">u"--Lqian"</span>)</div><div class="line"></div><div class="line">    <span class="comment">#添加图例</span></div><div class="line">    blue_patch = mpatches.Patch(color=<span class="string">'blue'</span>, label=<span class="string">u"均值 "</span> + attr_label)</div><div class="line">    green_patch = mpatches.Patch(color=<span class="string">'green'</span>, label=<span class="string">u'最小值 '</span>+ attr_label)</div><div class="line">    red_patch = mpatches.Patch(color=<span class="string">'red'</span>, label=<span class="string">u'最大值 '</span>+ attr_label)</div><div class="line">    plt.legend(handles=[blue_patch, green_patch, red_patch], loc=<span class="number">2</span>)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> savefig_path != <span class="string">''</span>:</div><div class="line">        plt.savefig(savefig_path)</div><div class="line">    </div><div class="line">    plt.show()</div></pre></td></tr></table></figure>
+<h3 id="3-战队属性散点图"><a href="#3-战队属性散点图" class="headerlink" title="3.战队属性散点图"></a>3.战队属性散点图</h3><p><img src="http://oov8bjfvw.bkt.clouddn.com/zhandui.png?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="战队属性散点图"></p>
+<h3 id="4-战队APM"><a href="#4-战队APM" class="headerlink" title="4.战队APM"></a>4.战队APM</h3><p><img src="http://oov8bjfvw.bkt.clouddn.com/zhandui1.png?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="战队APM"></p>
+<h3 id="5-战队每周游戏时间"><a href="#5-战队每周游戏时间" class="headerlink" title="5.战队每周游戏时间"></a>5.战队每周游戏时间</h3><p><img src="http://oov8bjfvw.bkt.clouddn.com/zhandui2.png?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="战队每周游戏时间"></p>
+<h3 id="6-结论"><a href="#6-结论" class="headerlink" title="6.结论"></a>6.结论</h3><p>孰能生巧，Skill comes of practice.</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃苹果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oov8bjfvw.bkt.clouddn.com/alllpay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,29 +233,59 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">纯代码</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kaggle</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">matplotlib</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/05/01/docker-whatis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          走进Docker之Docker初识
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -234,9 +308,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
