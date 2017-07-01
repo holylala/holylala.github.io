@@ -6,19 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>在redis中使用Lua脚本 | 香蕉牌苹果</title>
+  <title>Tag: 分布式 | 香蕉牌苹果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="脚本介绍Redis在2.6版本中推出了脚本功能,使用Lua语言(一种“卫星语言”,能够方便地嵌入到其他语言中使用)编写脚本传到Redis中执行。在Lua脚本中可以调用大部分的Redis命令,使用脚本的好处如下:">
-<meta name="keywords" content="redis,Lua">
-<meta property="og:type" content="article">
-<meta property="og:title" content="在redis中使用Lua脚本">
-<meta property="og:url" content="http://yoursite.com/2017/04/28/redis-uselua/index.html">
+  <meta name="description" content="个人技术博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="香蕉牌苹果">
+<meta property="og:url" content="http://yoursite.com/tags/分布式/index.html">
 <meta property="og:site_name" content="香蕉牌苹果">
-<meta property="og:description" content="脚本介绍Redis在2.6版本中推出了脚本功能,使用Lua语言(一种“卫星语言”,能够方便地嵌入到其他语言中使用)编写脚本传到Redis中执行。在Lua脚本中可以调用大部分的Redis命令,使用脚本的好处如下:">
-<meta property="og:updated_time" content="2017-04-29T10:33:32.312Z">
+<meta property="og:description" content="个人技术博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在redis中使用Lua脚本">
-<meta name="twitter:description" content="脚本介绍Redis在2.6版本中推出了脚本功能,使用Lua语言(一种“卫星语言”,能够方便地嵌入到其他语言中使用)编写脚本传到Redis中执行。在Lua脚本中可以调用大部分的Redis命令,使用脚本的好处如下:">
+<meta name="twitter:title" content="香蕉牌苹果">
+<meta name="twitter:description" content="个人技术博客">
   
     <link rel="alternative" href="/atom.xml" title="香蕉牌苹果" type="application/atom+xml">
   
@@ -152,80 +150,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-redis-uselua" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      在redis中使用Lua脚本
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/07/01/redis-lua-distributed-limit/" class="archive-article-date">
+  	<time datetime="2017-07-01T15:14:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/07/01/redis-lua-distributed-limit/">使用Redis+Lua实现分布式限流</a>
     </h1>
   
 
-        
-        <a href="/2017/04/28/redis-uselua/" class="archive-article-date">
-  	<time datetime="2017-04-28T15:40:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="脚本介绍"><a href="#脚本介绍" class="headerlink" title="脚本介绍"></a>脚本介绍</h2><p>Redis在2.6版本中推出了脚本功能,使用Lua语言(一种“卫星语言”,能够方便地嵌入到其他语言中使用)编写脚本传到Redis中执行。在Lua脚本中可以调用大部分的Redis命令,使用脚本的好处如下:<br><a id="more"></a></p>
-<ul>
-<li><p>减少网络开销: 多个redis请求可以在一个脚本中一次发送一个请求,减少网络往返时延。</p>
-</li>
-<li><p>原子操作: Redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。编写脚本的<br>过程中无需担心会出现竞态条件,也就无需使用事务。事务可以完成的所有功能都可以用脚本实现。</p>
-</li>
-<li><p>复用: 客户端发送的脚本会永久存储在Redis中,其他语言开发的项目可以复用之。</p>
-</li>
-</ul>
-<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><h3 id="1-访问频率限制"><a href="#1-访问频率限制" class="headerlink" title="1.访问频率限制"></a>1.访问频率限制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> <span class="built_in">times</span> = redis.call(<span class="string">'incr'</span>,KEYS[1])</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="built_in">times</span> == 1 <span class="keyword">then</span> </div><div class="line"><span class="comment">#KEYS[1]键刚创建,所以为其设置生存时间</span></div><div class="line">redis.call(<span class="string">'expire'</span>,KEYS[1],ARGV[1])</div><div class="line">end </div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="built_in">times</span> &gt; tonumber(ARGV[2]) <span class="keyword">then</span>	</div><div class="line"><span class="built_in">return</span> 0</div><div class="line">end </div><div class="line"></div><div class="line"><span class="built_in">return</span> 1	</div><div class="line"></div><div class="line"><span class="comment">#保存该脚本为test.lua,执行该脚本:</span></div><div class="line"></div><div class="line">redis-cli --eval /path/test.lua key1 , 10 2</div><div class="line"></div><div class="line"><span class="comment">#--eval参数是告诉redis-cli读取并运行后面的Lua脚本,/path/test.jua是脚本文件的路径,key1是要操作的键，在脚本中使用KEYS[1]获取,10和2是参数，在脚本中使用ARGV[1]和ARGV[2]获得值（每10秒最多访问3次),注意空格</span></div></pre></td></tr></table></figure>
-<h3 id="2-java代码示例"><a href="#2-java代码示例" class="headerlink" title="2.java代码示例"></a>2.java代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//redis lua 脚本</span></div><div class="line"><span class="keyword">static</span> String luaScript = <span class="string">"local timeValue = redis.call('get',KEYS[1]) if timeValue &lt; ARGV[1] then return  redis.call('mset',KEYS[1],ARGV[1],KEYS[2],ARGV[2]) end return nil"</span>;</div><div class="line"></div><div class="line"><span class="comment">//执行脚本</span></div><div class="line">redisClient.executeLuaScript(luaScript,<span class="string">"key1"</span>, <span class="string">"key2"</span>, <span class="string">"value1"</span>, <span class="string">"value2"</span>);</div><div class="line"></div><div class="line"><span class="comment">//executeLuaScript方法:</span></div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">executeLuaScript</span><span class="params">(String script,String key1,String key2,String avg1,String avg2)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.execution(<span class="keyword">new</span> JedisResultTask() &#123;</div><div class="line">            <span class="function"><span class="keyword">protected</span> Object <span class="title">doExecution</span><span class="params">(Jedis jedis)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> jedis.eval(script,<span class="number">2</span>,key1,key2,avg1,avg2);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h3 id="3-解决抢红包高并发的问题"><a href="#3-解决抢红包高并发的问题" class="headerlink" title="3.解决抢红包高并发的问题"></a>3.解决抢红包高并发的问题</h3><blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p><a href="http://blog.csdn.net/hengyunabc/article/details/19433779/" target="_blank" rel="external">传送门</a></p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃苹果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://oov8bjfvw.bkt.clouddn.com/alllpay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -237,50 +191,31 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Lua</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
+        		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/04/23/redis-usepip/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          在Redis中使用管道
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/04/29/build-python-devenv/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">搭建Python开发环境(win10)</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-
-  
-    <div class="duoshuo"></div>
+    </div></section>
   
 
-
+    
 
 
           </div>
@@ -303,9 +238,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

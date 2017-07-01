@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-14T16:12:29.512Z</updated>
+  <updated>2017-07-01T15:47:14.836Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Redis+Lua实现分布式限流</title>
+    <link href="http://yoursite.com/2017/07/01/redis-lua-distributed-limit/"/>
+    <id>http://yoursite.com/2017/07/01/redis-lua-distributed-limit/</id>
+    <published>2017-07-01T15:14:40.000Z</published>
+    <updated>2017-07-01T15:47:14.836Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="分布式限流"><a href="#分布式限流" class="headerlink" title="分布式限流"></a>分布式限流</h2><p>分布式限流最关键的是要将限流服务做成原子化,而解决方案可以使用 Redis+Lua 或者 Nginx+Lua 技术实现,通过这两种技术可以实现高并发和高性能。本文使用 Redis+Lua 实现时间窗内某个接口的请求数限流，实现了该功能后可以改造为限流总并发/请求数和限制总资源数。</p>
+<h2 id="Redis-Lua实现脚本"><a href="#Redis-Lua实现脚本" class="headerlink" title="Redis+Lua实现脚本"></a>Redis+Lua实现脚本</h2><a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> key = KEYS[1] <span class="comment">#限流KEY（一秒一个）</span></div><div class="line"><span class="built_in">local</span> <span class="built_in">limit</span> = tonumber(ARGV[1]) <span class="comment">#限流大小</span></div><div class="line"><span class="built_in">local</span> current = tonumber(redis.call(<span class="string">'get'</span>,key) or <span class="string">"0"</span>) <span class="comment">#获取不到 默认为0</span></div><div class="line"><span class="keyword">if</span> current + 1 &gt; <span class="built_in">limit</span> <span class="keyword">then</span> <span class="comment">#如果超出限流大小</span></div><div class="line">   <span class="built_in">return</span> 0</div><div class="line"><span class="keyword">else</span>   <span class="comment">#请求数+1，并设置2秒过期</span></div><div class="line">	redis.call(<span class="string">"INCRBY"</span>,key,<span class="string">"1"</span>)</div><div class="line">	redis.call(<span class="string">"expire"</span>,key,<span class="string">"2"</span>)</div><div class="line">	<span class="built_in">return</span> 1</div><div class="line">end</div></pre></td></tr></table></figure>
+<h2 id="Java中判断是否需要限流的代码"><a href="#Java中判断是否需要限流的代码" class="headerlink" title="Java中判断是否需要限流的代码"></a>Java中判断是否需要限流的代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">distributedLimit</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	<span class="comment">//redis lua 脚本</span></div><div class="line">	String luaScript = Files.toString(<span class="keyword">new</span> File(<span class="string">"xxxxLimit.lua"</span>)),Charset.defaultCharset());</div><div class="line">	<span class="comment">//将当前时间戳取秒数（极端情况下机器时钟不准时会存在一些小问题)</span></div><div class="line">	String key = <span class="string">"ip:"</span> + System.currentTimeMillis()/<span class="number">1000</span>;</div><div class="line">	<span class="comment">//限流大小</span></div><div class="line">	String limit = <span class="string">"30"</span>; </div><div class="line">	<span class="comment">//执行脚本</span></div><div class="line">	<span class="keyword">return</span> (Long)jedis.eval(luaScript,Lists.newArrayList(key),Lists.newArrayList(limit)) == <span class="number">1</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;分布式限流&quot;&gt;&lt;a href=&quot;#分布式限流&quot; class=&quot;headerlink&quot; title=&quot;分布式限流&quot;&gt;&lt;/a&gt;分布式限流&lt;/h2&gt;&lt;p&gt;分布式限流最关键的是要将限流服务做成原子化,而解决方案可以使用 Redis+Lua 或者 Nginx+Lua 技术实现,通过这两种技术可以实现高并发和高性能。本文使用 Redis+Lua 实现时间窗内某个接口的请求数限流，实现了该功能后可以改造为限流总并发/请求数和限制总资源数。&lt;/p&gt;
+&lt;h2 id=&quot;Redis-Lua实现脚本&quot;&gt;&lt;a href=&quot;#Redis-Lua实现脚本&quot; class=&quot;headerlink&quot; title=&quot;Redis+Lua实现脚本&quot;&gt;&lt;/a&gt;Redis+Lua实现脚本&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="http://yoursite.com/tags/redis/"/>
+    
+      <category term="Lua" scheme="http://yoursite.com/tags/Lua/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="分布式" scheme="http://yoursite.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>Python数据分析:Kaggle案例之StarCraft II Replay Analysis</title>
@@ -53,9 +84,9 @@
     </summary>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
-    
       <category term="纯代码" scheme="http://yoursite.com/tags/%E7%BA%AF%E4%BB%A3%E7%A0%81/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="kaggle" scheme="http://yoursite.com/tags/kaggle/"/>
     
@@ -159,9 +190,9 @@
     </summary>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
-    
       <category term="纯代码" scheme="http://yoursite.com/tags/%E7%BA%AF%E4%BB%A3%E7%A0%81/"/>
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="kaggle" scheme="http://yoursite.com/tags/kaggle/"/>
     
