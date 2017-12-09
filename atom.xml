@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-01T15:47:14.836Z</updated>
+  <updated>2017-12-09T11:42:33.652Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RabbitMQ中的几种交换器</title>
+    <link href="http://yoursite.com/2017/11/30/rabbitmq-msgtype/"/>
+    <id>http://yoursite.com/2017/11/30/rabbitmq-msgtype/</id>
+    <published>2017-11-30T11:12:45.000Z</published>
+    <updated>2017-12-09T11:42:33.652Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>RabbitMQ会根据路由键将消息从交换器路由到队列,但它是如何处理投递到多个队列的情况的呢？协议中定义的不同类型交换器发挥了作用。最常用的一共有三种类型：direct,fanout和topic。</p>
+<a id="more"></a>
+<h3 id="direct交换器"><a href="#direct交换器" class="headerlink" title="direct交换器"></a>direct交换器</h3><p>direct交换器非常简单:如果路由键匹配的话,消息就被投递到对应的队列,请参考下图</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/direct%E4%BA%A4%E6%8D%A2%E5%99%A8.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="direct交换器"></p>
+<p>服务器必须实现direct类型交换器，包含一个空白字符串名称的默认交换器。当声明一个队列时，它会自动绑定到默认交换器，并以队列名称作为路由键。当默认的direct交换器无法满足应用程序的需求时,你可以声明你自己的交换器。</p>
+<h3 id="fanout交换器"><a href="#fanout交换器" class="headerlink" title="fanout交换器"></a>fanout交换器</h3><p><img src="http://oov8bjfvw.bkt.clouddn.com/fanout%E4%BA%A4%E6%8D%A2%E5%99%A8.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="fanout交换器"></p>
+<p>这种类型的交换器会将收到的消息广播到绑定的队列上。当发送一条消息到fanout交换器时,它会把消息投递给所有附加在此交换器上的队列。实现对单条消息做不同方式的处理。</p>
+<h3 id="topic交换器"><a href="#topic交换器" class="headerlink" title="topic交换器"></a>topic交换器</h3><p><img src="http://oov8bjfvw.bkt.clouddn.com/topic%E4%BA%A4%E6%8D%A2%E5%99%A8.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="topic交换器"></p>
+<p>这类交换器可以使得来自不同源头的消息能够到达同一个队列,它能基于多个规则或标准进行路由,是一种更为灵活的交换器。发送到topic型交换器的消息不能包含任意路由键——它必须是一串字符并且以圆点符号隔开。这些字符可以是任意的，但它们通常都会指定成链接的消息的某些功能。一些有效的路由键如：”stock.usd.nyse”, “nyse.vmw”, “quick.orange.rabbit”等，路由键可以包括任意多个字符，上限是255个字节长度。绑定键也必须使用类似的形式。topic型交换器的逻辑和direct型很相像——消息发送时会指定一个特别的路由键，并且会被路由到所有与绑定键相匹配的队列。不过对绑定键有两种特殊类型：</p>
+<ul>
+<li><p>”*” 符号用来代替任意单词</p>
+</li>
+<li><p>”#” 符号可以代替0个或多个单词</p>
+</li>
+</ul>
+<p>topic类型交换器灵活之处体现在：</p>
+<ul>
+<li><p>当一个队列以”#”作为绑定键时，它将接收所有消息，而不管路由键如何，类似于fanout型交换器</p>
+</li>
+<li><p>当特殊字符”*”、”#”没有用到绑定时，topic型交换器就好比direct型交换器了</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;RabbitMQ会根据路由键将消息从交换器路由到队列,但它是如何处理投递到多个队列的情况的呢？协议中定义的不同类型交换器发挥了作用。最常用的一共有三种类型：direct,fanout和topic。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="RabbitMQ" scheme="http://yoursite.com/tags/RabbitMQ/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Redis+Lua实现分布式限流</title>
