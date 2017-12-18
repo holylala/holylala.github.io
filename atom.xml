@@ -66,37 +66,11 @@
   </entry>
   
   <entry>
-    <title>Java NIO 中的 Buffer</title>
-    <link href="http://yoursite.com/2017/12/18/pattern-proxy/"/>
-    <id>http://yoursite.com/2017/12/18/pattern-proxy/</id>
-    <published>2017-12-18T13:12:45.000Z</published>
-    <updated>2017-12-18T15:42:14.604Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Buffer-的基本原理"><a href="#Buffer-的基本原理" class="headerlink" title="Buffer 的基本原理"></a>Buffer 的基本原理</h2><p>Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:</p>
-<p><img src="http://oov8bjfvw.bkt.clouddn.com/Spring%20Boot%20%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="Buffer参数含义"></p>
-<a id="more"></a>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Buffer-的基本原理&quot;&gt;&lt;a href=&quot;#Buffer-的基本原理&quot; class=&quot;headerlink&quot; title=&quot;Buffer 的基本原理&quot;&gt;&lt;/a&gt;Buffer 的基本原理&lt;/h2&gt;&lt;p&gt;Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://oov8bjfvw.bkt.clouddn.com/Spring%20Boot%20%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim&quot; alt=&quot;Buffer参数含义&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Java NIO" scheme="http://yoursite.com/tags/Java-NIO/"/>
-    
-      <category term="Buffer" scheme="http://yoursite.com/tags/Buffer/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Spring Cloud Eureka服务治理实践之构建Spring Boot基础项目</title>
     <link href="http://yoursite.com/2017/12/17/springcloud-eureka/"/>
     <id>http://yoursite.com/2017/12/17/springcloud-eureka/</id>
     <published>2017-12-17T11:12:45.000Z</published>
-    <updated>2017-12-18T15:33:41.658Z</updated>
+    <updated>2017-12-18T16:04:11.207Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Spring Cloud Eureka 是 Spring Cloud Netflix 微服务套件中的一部分,它基于Netflix EureKa 做了二次封装，主要负责完成微服务架构中的服务治理功能。服务治理可以说是微服务架构中最为核心和基础的模块,它主要用来实现各个微服务实例的自动化注册与发现。</p>
 <a id="more"></a>
