@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-12-17T15:01:03.600Z</updated>
+  <updated>2017-12-18T16:00:59.251Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,87 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Spring Cloud Eureka 服务治理实践</title>
+    <title>模式的秘密-代理模式</title>
+    <link href="http://yoursite.com/2017/12/18/java-pattern-proxy/"/>
+    <id>http://yoursite.com/2017/12/18/java-pattern-proxy/</id>
+    <published>2017-12-18T14:15:45.000Z</published>
+    <updated>2017-12-18T16:00:59.251Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="代理模式定义"><a href="#代理模式定义" class="headerlink" title="代理模式定义"></a>代理模式定义</h2><p>为其他对象提供一种代理以控制对这个对象的访问。</p>
+<a id="more"></a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;代理模式定义&quot;&gt;&lt;a href=&quot;#代理模式定义&quot; class=&quot;headerlink&quot; title=&quot;代理模式定义&quot;&gt;&lt;/a&gt;代理模式定义&lt;/h2&gt;&lt;p&gt;为其他对象提供一种代理以控制对这个对象的访问。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="pattern" scheme="http://yoursite.com/tags/pattern/"/>
+    
+      <category term="proxy" scheme="http://yoursite.com/tags/proxy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java NIO 中的 Buffer</title>
+    <link href="http://yoursite.com/2017/12/18/java-nio-buffer/"/>
+    <id>http://yoursite.com/2017/12/18/java-nio-buffer/</id>
+    <published>2017-12-18T13:12:45.000Z</published>
+    <updated>2017-12-18T16:00:42.427Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Buffer-的基本原理"><a href="#Buffer-的基本原理" class="headerlink" title="Buffer 的基本原理"></a>Buffer 的基本原理</h2><p>Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/Buffer%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="Buffer参数含义"></p>
+<a id="more"></a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Buffer-的基本原理&quot;&gt;&lt;a href=&quot;#Buffer-的基本原理&quot; class=&quot;headerlink&quot; title=&quot;Buffer 的基本原理&quot;&gt;&lt;/a&gt;Buffer 的基本原理&lt;/h2&gt;&lt;p&gt;Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://oov8bjfvw.bkt.clouddn.com/Buffer%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim&quot; alt=&quot;Buffer参数含义&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java NIO" scheme="http://yoursite.com/tags/Java-NIO/"/>
+    
+      <category term="Buffer" scheme="http://yoursite.com/tags/Buffer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java NIO 中的 Buffer</title>
+    <link href="http://yoursite.com/2017/12/18/pattern-proxy/"/>
+    <id>http://yoursite.com/2017/12/18/pattern-proxy/</id>
+    <published>2017-12-18T13:12:45.000Z</published>
+    <updated>2017-12-18T15:42:14.604Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Buffer-的基本原理"><a href="#Buffer-的基本原理" class="headerlink" title="Buffer 的基本原理"></a>Buffer 的基本原理</h2><p>Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/Spring%20Boot%20%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="Buffer参数含义"></p>
+<a id="more"></a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Buffer-的基本原理&quot;&gt;&lt;a href=&quot;#Buffer-的基本原理&quot; class=&quot;headerlink&quot; title=&quot;Buffer 的基本原理&quot;&gt;&lt;/a&gt;Buffer 的基本原理&lt;/h2&gt;&lt;p&gt;Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://oov8bjfvw.bkt.clouddn.com/Spring%20Boot%20%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim&quot; alt=&quot;Buffer参数含义&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java NIO" scheme="http://yoursite.com/tags/Java-NIO/"/>
+    
+      <category term="Buffer" scheme="http://yoursite.com/tags/Buffer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Cloud Eureka服务治理实践之构建Spring Boot基础项目</title>
     <link href="http://yoursite.com/2017/12/17/springcloud-eureka/"/>
     <id>http://yoursite.com/2017/12/17/springcloud-eureka/</id>
     <published>2017-12-17T11:12:45.000Z</published>
-    <updated>2017-12-17T15:01:03.600Z</updated>
+    <updated>2017-12-18T15:33:41.658Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Spring Cloud Eureka 是 Spring Cloud Netflix 微服务套件中的一部分,它基于Netflix EureKa 做了二次封装，主要负责完成微服务架构中的服务治理功能。服务治理可以说是微服务架构中最为核心和基础的模块,它主要用来实现各个微服务实例的自动化注册与发现。</p>
 <a id="more"></a>
@@ -53,12 +129,17 @@
 <li><p>spring-boot-starter-test： 通用测试模块,包含Junit</p>
 </li>
 </ul>
-<p>5.启动项目</p>
+<p>5 实现RESTful API </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">package com.holylala.hello;</div><div class="line"></div><div class="line">import org.springframework.web.bind.annotation.RequestMapping;</div><div class="line">import org.springframework.web.bind.annotation.RestController;</div><div class="line"></div><div class="line">//注意该类的目录结构 需放在com.holylala.hello包下</div><div class="line">@RestController</div><div class="line">public class HelloController &#123;</div><div class="line"></div><div class="line">    @RequestMapping(&quot;/hello&quot;)</div><div class="line">    public String index() &#123;</div><div class="line">        return &quot;hello world&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>6 启动 Spring Boot 应用</p>
 <ul>
-<li>mvn spring-boot:run </li>
+<li><p>mvn spring-boot:run </p>
+</li>
+<li><p>在服务器上部署运行时,通常先使用 mvn install 将应用打包成jar包,再通过 java -jar xxx.jar 来启动应用。</p>
+</li>
 </ul>
-<p>6 实现RESTful API </p>
-<p>项目访问: <a href="http://127.0.0.1:8080/hello" target="_blank" rel="external">http://127.0.0.1:8080/hello</a></p>
+<p>7 项目访问</p>
+<p>访问 <a href="http://127.0.0.1:8080/hello" target="_blank" rel="external">http://127.0.0.1:8080/hello</a> ，可看到返回了预期结果: hello world</p>
 ]]></content>
     
     <summary type="html">
@@ -191,9 +272,9 @@
     
       <category term="kaggle" scheme="http://yoursite.com/tags/kaggle/"/>
     
-      <category term="matplotlib" scheme="http://yoursite.com/tags/matplotlib/"/>
-    
       <category term="pandas" scheme="http://yoursite.com/tags/pandas/"/>
+    
+      <category term="matplotlib" scheme="http://yoursite.com/tags/matplotlib/"/>
     
   </entry>
   
@@ -297,9 +378,9 @@
     
       <category term="kaggle" scheme="http://yoursite.com/tags/kaggle/"/>
     
-      <category term="numpy" scheme="http://yoursite.com/tags/numpy/"/>
-    
       <category term="matplotlib" scheme="http://yoursite.com/tags/matplotlib/"/>
+    
+      <category term="numpy" scheme="http://yoursite.com/tags/numpy/"/>
     
   </entry>
   
