@@ -16,7 +16,12 @@
 <meta property="og:site_name" content="香蕉牌苹果">
 <meta property="og:description" content="Buffer 的基本原理Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:">
 <meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/Buffer%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
-<meta property="og:updated_time" content="2017-12-18T16:00:42.427Z">
+<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/buffer1.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/buffer2.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/buffer3.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/buffer4.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/buffer5.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta property="og:updated_time" content="2017-12-23T15:16:57.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java NIO 中的 Buffer">
 <meta name="twitter:description" content="Buffer 的基本原理Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:">
@@ -177,7 +182,20 @@
         <h2 id="Buffer-的基本原理"><a href="#Buffer-的基本原理" class="headerlink" title="Buffer 的基本原理"></a>Buffer 的基本原理</h2><p>Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:</p>
 <p><img src="http://oov8bjfvw.bkt.clouddn.com/Buffer%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="Buffer参数含义"></p>
 <a id="more"></a>
-
+<p>示例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ByteBuffer b = ByteBuffer.allocate(<span class="number">15</span>);</div><div class="line">System.out.println(<span class="string">"初始值\tlimit="</span>+b.limit()+<span class="string">"\tcapacity="</span>+b.capacity()+<span class="string">"\tposition="</span>+b.position());</div><div class="line"></div><div class="line"><span class="comment">//存入10个字节数据</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</div><div class="line">	b.put((<span class="keyword">byte</span>)i);</div><div class="line">&#125;</div><div class="line"></div><div class="line">System.out.println(<span class="string">"存入10个字节数据之后\tlimit="</span>+b.limit()+<span class="string">"\tcapacity="</span>+b.capacity()+<span class="string">"\tposition="</span>+b.position());</div><div class="line"></div><div class="line"><span class="comment">//重置position</span></div><div class="line">b.flip();</div><div class="line"></div><div class="line">System.out.println(<span class="string">"Buffer重置之后\tlimit="</span>+b.limit()+<span class="string">"\tcapacity="</span>+b.capacity()+<span class="string">"\tposition="</span>+b.position());</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">	System.out.print(b.get());</div><div class="line">&#125;</div><div class="line">System.out.println();</div><div class="line">System.out.println(<span class="string">"Buffer取5个值之后\tlimit="</span>+b.limit()+<span class="string">"\tcapacity="</span>+b.capacity()+<span class="string">"\tposition="</span>+b.position());</div><div class="line">b.flip();</div><div class="line">System.out.println(<span class="string">"Buffer再次重置之后\tlimit="</span>+b.limit()+<span class="string">"\tcapacity="</span>+b.capacity()+<span class="string">"\tposition="</span>+b.position());</div></pre></td></tr></table></figure>
+<p>以上代码首先分配了一个15个字节大小的缓冲。初始阶段，如下图显示， postion 为 0 , capacity 为 15, limit 为15, 这里索引为15的位置实际上是不存在的。</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/buffer1.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="Buffer1"></p>
+<p>接着, Buffer中存入10个byte, 当前position的位置会向前移动,因为position位置始终指向下一个即将输入的位置,所以 position 变为 10, 而 limit 和 capacity 不变。</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/buffer2.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="Buffer2"></p>
+<p>接着执行 flip() 操作, 该操作会重置 position , 通常将Buffer从写模式转换成读模式时需要执行此方法。flip() 操作不仅重置了当前的position为0，还将limit设置到当前position的位置，这样做的目的是防止在读模式中,读到应用程序根本没有进行操作的区域。</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/buffer3.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="Buffer3"></p>
+<p>接着执行5次读操作,和写操作一样，读操作也会设置 position 到当前位置，如下图：</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/buffer4.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="Buffer4"></p>
+<p>最后,再执行一次 flip(),将 position 归零,同时将limit设置到position的位置：</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/buffer5.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="Buffer5"></p>
+<p>程序输出如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">初始值	limit=<span class="number">15</span>	capacity=<span class="number">15</span>	position=<span class="number">0</span></div><div class="line">存入<span class="number">10</span>个字节数据之后	limit=<span class="number">15</span>	capacity=<span class="number">15</span>	position=<span class="number">10</span></div><div class="line">Buffer重置之后	limit=<span class="number">10</span>	capacity=<span class="number">15</span>	position=<span class="number">0</span></div><div class="line"><span class="number">01234</span></div><div class="line">Buffer取<span class="number">5</span>个值之后	limit=<span class="number">10</span>	capacity=<span class="number">15</span>	position=<span class="number">5</span></div><div class="line">Buffer再次重置之后	limit=<span class="number">5</span>	capacity=<span class="number">15</span>	position=<span class="number">0</span></div></pre></td></tr></table></figure>
       
 
       
@@ -350,7 +368,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java NIO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Buffer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -362,22 +384,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java NIO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Buffer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">pattern</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">proxy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">纯代码</a>
               </li>
              
@@ -386,7 +392,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color1">numpy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -394,7 +400,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">numpy</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">pattern</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">proxy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -415,6 +429,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
