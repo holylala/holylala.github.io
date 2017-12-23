@@ -8,17 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>模式的秘密-代理模式 | 香蕉牌苹果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="代理模式定义为其他对象提供一种代理以控制对这个对象的访问。">
+  <meta name="description" content="代理模式定义为其他对象提供一种代理以控制对这个对象的访问。代理对象起到中介作用，可去掉功能服务或者增加额外的服务。 常见的几种代理模式 远程代理  为不同地理的对象提供局域网代表对象  虚拟代理  根据需要将资源消耗很大的对象进行延迟,真正需要的时候进行创建  保护代理  权限控制  智能引用代理  提供额外功能">
 <meta name="keywords" content="pattern,proxy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模式的秘密-代理模式">
 <meta property="og:url" content="http://yoursite.com/2017/12/18/java-pattern-proxy/index.html">
 <meta property="og:site_name" content="香蕉牌苹果">
-<meta property="og:description" content="代理模式定义为其他对象提供一种代理以控制对这个对象的访问。">
-<meta property="og:updated_time" content="2017-12-18T16:00:59.251Z">
+<meta property="og:description" content="代理模式定义为其他对象提供一种代理以控制对这个对象的访问。代理对象起到中介作用，可去掉功能服务或者增加额外的服务。 常见的几种代理模式 远程代理  为不同地理的对象提供局域网代表对象  虚拟代理  根据需要将资源消耗很大的对象进行延迟,真正需要的时候进行创建  保护代理  权限控制  智能引用代理  提供额外功能">
+<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta property="og:updated_time" content="2017-12-23T16:23:08.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模式的秘密-代理模式">
-<meta name="twitter:description" content="代理模式定义为其他对象提供一种代理以控制对这个对象的访问。">
+<meta name="twitter:description" content="代理模式定义为其他对象提供一种代理以控制对这个对象的访问。代理对象起到中介作用，可去掉功能服务或者增加额外的服务。 常见的几种代理模式 远程代理  为不同地理的对象提供局域网代表对象  虚拟代理  根据需要将资源消耗很大的对象进行延迟,真正需要的时候进行创建  保护代理  权限控制  智能引用代理  提供额外功能">
+<meta name="twitter:image" content="http://oov8bjfvw.bkt.clouddn.com/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
   
     <link rel="alternative" href="/atom.xml" title="香蕉牌苹果" type="application/atom+xml">
   
@@ -172,9 +174,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="代理模式定义"><a href="#代理模式定义" class="headerlink" title="代理模式定义"></a>代理模式定义</h2><p>为其他对象提供一种代理以控制对这个对象的访问。</p>
+        <h2 id="代理模式定义"><a href="#代理模式定义" class="headerlink" title="代理模式定义"></a>代理模式定义</h2><p>为其他对象提供一种代理以控制对这个对象的访问。<br>代理对象起到中介作用，可去掉功能服务或者增加额外的服务。</p>
+<h2 id="常见的几种代理模式"><a href="#常见的几种代理模式" class="headerlink" title="常见的几种代理模式"></a>常见的几种代理模式</h2><ul>
+<li>远程代理</li>
+</ul>
+<p>为不同地理的对象提供局域网代表对象</p>
+<ul>
+<li>虚拟代理</li>
+</ul>
+<p>根据需要将资源消耗很大的对象进行延迟,真正需要的时候进行创建</p>
+<ul>
+<li>保护代理</li>
+</ul>
+<p>权限控制</p>
+<ul>
+<li>智能引用代理</li>
+</ul>
+<p>提供额外功能</p>
 <a id="more"></a>
-
+<h2 id="智能引用代理的实现"><a href="#智能引用代理的实现" class="headerlink" title="智能引用代理的实现"></a>智能引用代理的实现</h2><ul>
+<li>静态代理</li>
+</ul>
+<p>代理和被代理对象在代理之前是确定的。他们都实现相同的接口或者继承相同的抽象类。</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="静态代理"></p>
+<p>代码示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//功能接口</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Moveable</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//功能实现对象</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">implements</span> <span class="title">Moveable</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">//实现开车</span></div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Thread.sleep(<span class="keyword">new</span> Random().nextInt(<span class="number">1000</span>));</div><div class="line">			System.out.println(<span class="string">"汽车行驶中...."</span>);</div><div class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//使用继承实现代理 TimeCounter1 是 Car 的代理</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeCounter1</span> <span class="keyword">extends</span> <span class="title">Car</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">long</span> starttime = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"汽车开始行驶...."</span>);</div><div class="line">		<span class="keyword">super</span>.move();</div><div class="line">		<span class="keyword">long</span> endtime = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"汽车结束行驶....  汽车行驶时间："</span></div><div class="line">				+ (endtime - starttime) + <span class="string">"毫秒！"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//使用聚合实现代理 TimeCounter1 是 Car 的代理</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeCounter2</span> <span class="keyword">implements</span> <span class="title">Moveable</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TimeCounter2</span><span class="params">(Car car)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>();</div><div class="line">		<span class="keyword">this</span>.car = car;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> Car car;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">long</span> starttime = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"汽车开始行驶...."</span>);</div><div class="line">		car.move();</div><div class="line">		<span class="keyword">long</span> endtime = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"汽车结束行驶....  汽车行驶时间："</span></div><div class="line">				+ (endtime - starttime) + <span class="string">"毫秒！"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//调用</span></div><div class="line"></div><div class="line">	<span class="comment">//使用继承的方式</span></div><div class="line">	Moveable m = <span class="keyword">new</span> TimeCounter1();</div><div class="line">	m.move();</div><div class="line"></div><div class="line">	<span class="comment">//使用聚合方式实现</span></div><div class="line">	Car car = <span class="keyword">new</span> Car();</div><div class="line">	Moveable m1 = <span class="keyword">new</span> TimeCounter2(car);</div><div class="line">	m1.move();</div></pre></td></tr></table></figure>
       
 
       
@@ -246,7 +270,7 @@
     </a>
   
   
-    <a href="/2017/12/23/java-nio-buffer/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/12/24/java-pattern-proxy/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
@@ -347,6 +371,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">pattern</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">proxy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java NIO</a>
               </li>
              
@@ -360,6 +392,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -379,15 +415,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">pattern</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">proxy</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -408,10 +436,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">

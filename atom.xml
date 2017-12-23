@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-12-23T15:15:23.341Z</updated>
+  <updated>2017-12-23T16:23:17.806Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title></title>
-    <link href="http://yoursite.com/2017/12/23/java-nio-buffer/"/>
-    <id>http://yoursite.com/2017/12/23/java-nio-buffer/</id>
-    <published>2017-12-23T15:15:23.340Z</published>
-    <updated>2017-12-23T15:15:23.341Z</updated>
+    <link href="http://yoursite.com/2017/12/24/java-pattern-proxy/"/>
+    <id>http://yoursite.com/2017/12/24/java-pattern-proxy/</id>
+    <published>2017-12-23T16:23:17.803Z</published>
+    <updated>2017-12-23T16:23:17.806Z</updated>
     
     <content type="html"><![CDATA[<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
   width: 45em;
@@ -1038,60 +1038,109 @@ body .markdown-body
     page-break-after: avoid;
   }
 }
-</style><title>java-nio-buffer</title></head><body><article class="markdown-body"><hr>
-<p>title: Java NIO 中的 Buffer<br>
-date: 2017-12-18 21:12:45<br>
-tags: [Java NIO,Buffer]</p>
+</style><title>java-pattern-proxy</title></head><body><article class="markdown-body"><hr>
+<p>title: 模式的秘密-代理模式<br>
+date: 2017-12-18 22:15:45<br>
+tags: [pattern,proxy]</p>
 <hr>
-<h2 id="buffer"><a name="user-content-buffer" href="#buffer" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Buffer 的基本原理</h2>
-<p>Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:</p>
-<p><img alt="Buffer参数含义" src="http://oov8bjfvw.bkt.clouddn.com/Buffer%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim"></p>
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>代理模式定义</h2>
+<p>为其他对象提供一种代理以控制对这个对象的访问。<br>
+代理对象起到中介作用，可去掉功能服务或者增加额外的服务。</p>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>常见的几种代理模式</h2>
+<ul>
+<li>远程代理</li>
+</ul>
+<p>为不同地理的对象提供局域网代表对象</p>
+<ul>
+<li>虚拟代理</li>
+</ul>
+<p>根据需要将资源消耗很大的对象进行延迟,真正需要的时候进行创建</p>
+<ul>
+<li>保护代理</li>
+</ul>
+<p>权限控制</p>
+<ul>
+<li>智能引用代理</li>
+</ul>
+<p>提供额外功能</p>
 <a id="more"></a>
 
-<p>示例:</p>
-<p><pre><code class="java">
-    ByteBuffer b = ByteBuffer.allocate(15);
-    System.out.println(&quot;初始值\tlimit=&quot;+b.limit()+&quot;\tcapacity=&quot;+b.capacity()+&quot;\tposition=&quot;+b.position());
-
-    //存入10个字节数据
-    for (int i = 0; i &lt; 10; i++) {
-        b.put((byte)i);
-    }
-
-    System.out.println(&quot;存入10个字节数据之后\tlimit=&quot;+b.limit()+&quot;\tcapacity=&quot;+b.capacity()+&quot;\tposition=&quot;+b.position());
-
-    //重置position
-    b.flip();
-
-    System.out.println(&quot;Buffer重置之后\tlimit=&quot;+b.limit()+&quot;\tcapacity=&quot;+b.capacity()+&quot;\tposition=&quot;+b.position());
-
-    for (int i = 0; i &lt; 5; i++) {
-        System.out.print(b.get());
-    }
-    System.out.println();
-    System.out.println(&quot;Buffer取5个值之后\tlimit=&quot;+b.limit()+&quot;\tcapacity=&quot;+b.capacity()+&quot;\tposition=&quot;+b.position());
-    b.flip();
-    System.out.println(&quot;Buffer再次重置之后\tlimit=&quot;+b.limit()+&quot;\tcapacity=&quot;+b.capacity()+&quot;\tposition=&quot;+b.position());
-
-</code></pre><br>
-以上代码首先分配了一个15个字节大小的缓冲。初始阶段，如下图显示， postion 为 0 , capacity 为 15, limit 为15, 这里索引为15的位置实际上是不存在的。</p>
-<p><img alt="Buffer1" src="http://oov8bjfvw.bkt.clouddn.com/buffer1.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim"></p>
-<p>接着, Buffer中存入10个byte, 当前position的位置会向前移动,因为position位置始终指向下一个即将输入的位置,所以 position 变为 10, 而 limit 和 capacity 不变。</p>
-<p><img alt="Buffer2" src="http://oov8bjfvw.bkt.clouddn.com/buffer2.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim"></p>
-<p>接着执行 flip() 操作, 该操作会重置 position , 通常将Buffer从写模式转换成读模式时需要执行此方法。flip() 操作不仅重置了当前的position为0，还将limit设置到当前position的位置，这样做的目的是防止在读模式中,读到应用程序根本没有进行操作的区域。</p>
-<p><img alt="Buffer3" src="http://oov8bjfvw.bkt.clouddn.com/buffer3.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim"></p>
-<p>接着执行5次读操作,和写操作一样，读操作也会设置 position 到当前位置，如下图：</p>
-<p><img alt="Buffer4" src="http://oov8bjfvw.bkt.clouddn.com/buffer4.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim"></p>
-<p>最后,再执行一次 flip(),将 position 归零,同时将limit设置到position的位置：</p>
-<p><img alt="Buffer5" src="http://oov8bjfvw.bkt.clouddn.com/buffer5.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim"></p>
-<p>程序输入如下：</p>
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>智能引用代理的实现</h2>
+<ul>
+<li>静态代理</li>
+</ul>
+<p>代理和被代理对象在代理之前是确定的。他们都实现相同的接口或者继承相同的抽象类。</p>
+<p><img alt="静态代理" src="http://oov8bjfvw.bkt.clouddn.com/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim"></p>
+<p>代码示例</p>
 <pre><code class="java">
-初始值 limit=15    capacity=15 position=0
-存入10个字节数据之后 limit=15    capacity=15 position=10
-Buffer重置之后  limit=10    capacity=15 position=0
-01234
-Buffer取5个值之后    limit=10    capacity=15 position=5
-Buffer再次重置之后    limit=5 capacity=15 position=0
+//功能接口
+public interface Moveable {
+    void move();
+}
+
+//功能实现对象
+public class Car implements Moveable {
+
+    @Override
+    public void move() {
+        //实现开车
+        try {
+            Thread.sleep(new Random().nextInt(1000));
+            System.out.println(&quot;汽车行驶中....&quot;);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+//使用继承实现代理 TimeCounter1 是 Car 的代理
+public class TimeCounter1 extends Car {
+
+    @Override
+    public void move() {
+        long starttime = System.currentTimeMillis();
+        System.out.println(&quot;汽车开始行驶....&quot;);
+        super.move();
+        long endtime = System.currentTimeMillis();
+        System.out.println(&quot;汽车结束行驶....  汽车行驶时间：&quot;
+                + (endtime - starttime) + &quot;毫秒！&quot;);
+    }
+
+}
+
+//使用聚合实现代理 TimeCounter1 是 Car 的代理
+public class TimeCounter2 implements Moveable {
+
+    public TimeCounter2(Car car) {
+        super();
+        this.car = car;
+    }
+
+    private Car car;
+
+    @Override
+    public void move() {
+        long starttime = System.currentTimeMillis();
+        System.out.println(&quot;汽车开始行驶....&quot;);
+        car.move();
+        long endtime = System.currentTimeMillis();
+        System.out.println(&quot;汽车结束行驶....  汽车行驶时间：&quot;
+                + (endtime - starttime) + &quot;毫秒！&quot;);
+    }
+
+}
+
+//调用
+
+    //使用继承的方式
+    Moveable m = new TimeCounter1();
+    m.move();
+
+    //使用聚合方式实现
+    Car car = new Car();
+    Moveable m1 = new TimeCounter2(car);
+    m1.move();
 
 </code></pre></article></body></html>]]></content>
     
@@ -2113,14 +2162,31 @@ body .markdown-body
     page-break-after: avoid;
   }
 }
-&lt;/style&gt;&lt;title&gt;java-nio-buffer&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;article class=&quot;markdown-body&quot;&gt;&lt;hr /&gt;
-&lt;p&gt;title: Java NIO 中的 Buffer&lt;br /&gt;
-date: 2017-12-18 21:12:45&lt;br /&gt;
-tags: [Java NIO,Buffer]&lt;/p&gt;
+&lt;/style&gt;&lt;title&gt;java-pattern-proxy&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;article class=&quot;markdown-body&quot;&gt;&lt;hr /&gt;
+&lt;p&gt;title: 模式的秘密-代理模式&lt;br /&gt;
+date: 2017-12-18 22:15:45&lt;br /&gt;
+tags: [pattern,proxy]&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2 id=&quot;buffer&quot;&gt;&lt;a name=&quot;user-content-buffer&quot; href=&quot;#buffer&quot; class=&quot;headeranchor-link&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;headeranchor&quot;&gt;&lt;/span&gt;&lt;/a&gt;Buffer 的基本原理&lt;/h2&gt;
-&lt;p&gt;Buffer中有3个重要的参数:位置（position),容量（capacity) 和上限(limit)。这三者的含义如下图描述:&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&quot;Buffer参数含义&quot; src=&quot;http://oov8bjfvw.bkt.clouddn.com/Buffer%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;_1&quot;&gt;&lt;a name=&quot;user-content-_1&quot; href=&quot;#_1&quot; class=&quot;headeranchor-link&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;headeranchor&quot;&gt;&lt;/span&gt;&lt;/a&gt;代理模式定义&lt;/h2&gt;
+&lt;p&gt;为其他对象提供一种代理以控制对这个对象的访问。&lt;br /&gt;
+代理对象起到中介作用，可去掉功能服务或者增加额外的服务。&lt;/p&gt;
+&lt;h2 id=&quot;_2&quot;&gt;&lt;a name=&quot;user-content-_2&quot; href=&quot;#_2&quot; class=&quot;headeranchor-link&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;headeranchor&quot;&gt;&lt;/span&gt;&lt;/a&gt;常见的几种代理模式&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;远程代理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为不同地理的对象提供局域网代表对象&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;虚拟代理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据需要将资源消耗很大的对象进行延迟,真正需要的时候进行创建&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;保护代理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;权限控制&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;智能引用代理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;提供额外功能&lt;/p&gt;
     
     </summary>
     
@@ -2132,15 +2198,53 @@ tags: [Java NIO,Buffer]&lt;/p&gt;
     <link href="http://yoursite.com/2017/12/18/java-pattern-proxy/"/>
     <id>http://yoursite.com/2017/12/18/java-pattern-proxy/</id>
     <published>2017-12-18T14:15:45.000Z</published>
-    <updated>2017-12-18T16:00:59.251Z</updated>
+    <updated>2017-12-23T16:23:08.370Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="代理模式定义"><a href="#代理模式定义" class="headerlink" title="代理模式定义"></a>代理模式定义</h2><p>为其他对象提供一种代理以控制对这个对象的访问。</p>
+    <content type="html"><![CDATA[<h2 id="代理模式定义"><a href="#代理模式定义" class="headerlink" title="代理模式定义"></a>代理模式定义</h2><p>为其他对象提供一种代理以控制对这个对象的访问。<br>代理对象起到中介作用，可去掉功能服务或者增加额外的服务。</p>
+<h2 id="常见的几种代理模式"><a href="#常见的几种代理模式" class="headerlink" title="常见的几种代理模式"></a>常见的几种代理模式</h2><ul>
+<li>远程代理</li>
+</ul>
+<p>为不同地理的对象提供局域网代表对象</p>
+<ul>
+<li>虚拟代理</li>
+</ul>
+<p>根据需要将资源消耗很大的对象进行延迟,真正需要的时候进行创建</p>
+<ul>
+<li>保护代理</li>
+</ul>
+<p>权限控制</p>
+<ul>
+<li>智能引用代理</li>
+</ul>
+<p>提供额外功能</p>
 <a id="more"></a>
-]]></content>
+<h2 id="智能引用代理的实现"><a href="#智能引用代理的实现" class="headerlink" title="智能引用代理的实现"></a>智能引用代理的实现</h2><ul>
+<li>静态代理</li>
+</ul>
+<p>代理和被代理对象在代理之前是确定的。他们都实现相同的接口或者继承相同的抽象类。</p>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="静态代理"></p>
+<p>代码示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//功能接口</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Moveable</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//功能实现对象</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">implements</span> <span class="title">Moveable</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="comment">//实现开车</span></div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Thread.sleep(<span class="keyword">new</span> Random().nextInt(<span class="number">1000</span>));</div><div class="line">			System.out.println(<span class="string">"汽车行驶中...."</span>);</div><div class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//使用继承实现代理 TimeCounter1 是 Car 的代理</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeCounter1</span> <span class="keyword">extends</span> <span class="title">Car</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">long</span> starttime = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"汽车开始行驶...."</span>);</div><div class="line">		<span class="keyword">super</span>.move();</div><div class="line">		<span class="keyword">long</span> endtime = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"汽车结束行驶....  汽车行驶时间："</span></div><div class="line">				+ (endtime - starttime) + <span class="string">"毫秒！"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//使用聚合实现代理 TimeCounter1 是 Car 的代理</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimeCounter2</span> <span class="keyword">implements</span> <span class="title">Moveable</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TimeCounter2</span><span class="params">(Car car)</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>();</div><div class="line">		<span class="keyword">this</span>.car = car;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> Car car;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">long</span> starttime = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"汽车开始行驶...."</span>);</div><div class="line">		car.move();</div><div class="line">		<span class="keyword">long</span> endtime = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"汽车结束行驶....  汽车行驶时间："</span></div><div class="line">				+ (endtime - starttime) + <span class="string">"毫秒！"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//调用</span></div><div class="line"></div><div class="line">	<span class="comment">//使用继承的方式</span></div><div class="line">	Moveable m = <span class="keyword">new</span> TimeCounter1();</div><div class="line">	m.move();</div><div class="line"></div><div class="line">	<span class="comment">//使用聚合方式实现</span></div><div class="line">	Car car = <span class="keyword">new</span> Car();</div><div class="line">	Moveable m1 = <span class="keyword">new</span> TimeCounter2(car);</div><div class="line">	m1.move();</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;代理模式定义&quot;&gt;&lt;a href=&quot;#代理模式定义&quot; class=&quot;headerlink&quot; title=&quot;代理模式定义&quot;&gt;&lt;/a&gt;代理模式定义&lt;/h2&gt;&lt;p&gt;为其他对象提供一种代理以控制对这个对象的访问。&lt;/p&gt;
+      &lt;h2 id=&quot;代理模式定义&quot;&gt;&lt;a href=&quot;#代理模式定义&quot; class=&quot;headerlink&quot; title=&quot;代理模式定义&quot;&gt;&lt;/a&gt;代理模式定义&lt;/h2&gt;&lt;p&gt;为其他对象提供一种代理以控制对这个对象的访问。&lt;br&gt;代理对象起到中介作用，可去掉功能服务或者增加额外的服务。&lt;/p&gt;
+&lt;h2 id=&quot;常见的几种代理模式&quot;&gt;&lt;a href=&quot;#常见的几种代理模式&quot; class=&quot;headerlink&quot; title=&quot;常见的几种代理模式&quot;&gt;&lt;/a&gt;常见的几种代理模式&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;远程代理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为不同地理的对象提供局域网代表对象&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;虚拟代理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据需要将资源消耗很大的对象进行延迟,真正需要的时候进行创建&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;保护代理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;权限控制&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;智能引用代理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;提供额外功能&lt;/p&gt;
     
     </summary>
     
