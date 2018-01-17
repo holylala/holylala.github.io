@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-01-06T15:51:29.116Z</updated>
+  <updated>2018-01-17T15:24:11.584Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Cloud Eureka服务治理实践之注册中心的高可用配置</title>
+    <link href="http://yoursite.com/2018/01/10/springcloud-eureka-highservice/"/>
+    <id>http://yoursite.com/2018/01/10/springcloud-eureka-highservice/</id>
+    <published>2018-01-10T15:20:45.000Z</published>
+    <updated>2018-01-17T15:24:11.584Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="高可用注册中心"><a href="#高可用注册中心" class="headerlink" title="高可用注册中心"></a>高可用注册中心</h2><p>  Eureka Server 的高可用实际上就是将自己作为服务向其他服务注册中心注册自己，这样就可以形成一组相互注册的服务注册中心，以实现服务清单的相互同步，达到高可用的效果。在之前实现的服务注册中心的基础上进行扩展，构建一个双节点的服务注册中心集群。</p>
+<ul>
+<li>创建 application-peer1.properties ，修改配置:</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#去掉不向自身注册的配置</div><div class="line">spring.application.name=eureka-server</div><div class="line">#端口号</div><div class="line">server.port=1111</div><div class="line">#该节点名称</div><div class="line">eureka.instance.hostname=peer1</div><div class="line">#serviceUrl 指向peer2 另一个节点</div><div class="line">eureka.client.serviceUrl.defaultZone=http://peer2:1112/eureka/</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>创建 application-peer2.properties ，修改配置:</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#去掉不向自身注册的配置</div><div class="line">spring.application.name=eureka-server</div><div class="line">#端口号</div><div class="line">server.port=1112</div><div class="line">#该节点名称</div><div class="line">eureka.instance.hostname=peer2</div><div class="line">#serviceUrl 指向peer1 另一个节点</div><div class="line">eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/</div></pre></td></tr></table></figure>
+<ul>
+<li>配置实例名到Url的转换,在window C:\Windows\System32\drivers\etc 文件中添加映射:</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">127.0.0.1 peer1</div><div class="line">127.0.0.1 peer2</div></pre></td></tr></table></figure>
+<ul>
+<li>把工程打包，通过 spring.profiles.active 属性分别启动peer1和peer2节点:</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">java -jar eurekaserver-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1</div><div class="line">java -jar eurekaserver-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2</div></pre></td></tr></table></figure>
+<ul>
+<li>访问 peer1 的注册中心 <a href="http://127.0.0.1:1111/" target="_blank" rel="external">http://127.0.0.1:1111/</a> , 如下图所示， 可以到两个节点的注册信息:</li>
+</ul>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/peer1.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="peer1"></p>
+<ul>
+<li>同样访问 peer2 的注册中心 <a href="http://127.0.0.1:1112/" target="_blank" rel="external">http://127.0.0.1:1112/</a>, 如下图所示:</li>
+</ul>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/peer2.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="peer2"></p>
+<ul>
+<li>这两个节点,如果有其中一个未启动,后台会有心跳的错误信息输出，同时可在正常节点的控制面板上看到不可用的分片(unavailable-replicas)信息</li>
+</ul>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/unuseservice.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="unuseservice"></p>
+<ul>
+<li>在设置了多节点的服务注册中心之后,服务提供方需修改相应配置,把服务注册到 Eureka Server集群中，修改 first-service 的 application.properties 配置:</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">spring.application.name=first-service</div><div class="line">#指向两个节点</div><div class="line">eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/,http://peer2:1112/eureka/</div></pre></td></tr></table></figure>
+<ul>
+<li>重新启动 first-service 服务 ，访问 <a href="http://127.0.0.1:1111/" target="_blank" rel="external">http://127.0.0.1:1111/</a> 和 <a href="http://127.0.0.1:1112/" target="_blank" rel="external">http://127.0.0.1:1112/</a> 发现服务已被同时注册:</li>
+</ul>
+<p><img src="http://oov8bjfvw.bkt.clouddn.com/firstServicepeer1.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="firservicepeer1"></p>
+<p>若此时断开 peer1 , 在peer2上的其他服务依然能正常访问 first-service</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;高可用注册中心&quot;&gt;&lt;a href=&quot;#高可用注册中心&quot; class=&quot;headerlink&quot; title=&quot;高可用注册中心&quot;&gt;&lt;/a&gt;高可用注册中心&lt;/h2&gt;&lt;p&gt;  Eureka Server 的高可用实际上就是将自己作为服务向其他服务注册中心注册自己，这样就可以形成一组相互注册的服务注册中心，以实现服务清单的相互同步，达到高可用的效果。在之前实现的服务注册中心的基础上进行扩展，构建一个双节点的服务注册中心集群。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建 application-peer1.properties ，修改配置:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#去掉不向自身注册的配置&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;spring.application.name=eureka-server&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#端口号&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;server.port=1111&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#该节点名称&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;eureka.instance.hostname=peer1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#serviceUrl 指向peer2 另一个节点&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;eureka.client.serviceUrl.defaultZone=http://peer2:1112/eureka/&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Spring Cloud Eureka" scheme="http://yoursite.com/tags/Spring-Cloud-Eureka/"/>
+    
+      <category term="服务治理" scheme="http://yoursite.com/tags/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Cloud Eureka服务治理实践之注册服务提供者</title>
