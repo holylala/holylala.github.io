@@ -8,20 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Spring Cloud Ribbon 客户端负载均衡的使用 | 香蕉牌苹果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Cloud Ribbon  Spring Cloud Ribbon 是一个基于HTTP和TCP的客户端负载均衡工具,基于Netflix Ribbon实现。  在服务消费客户端Spring Boot工程pom.xml中引入Ribbon模块的依赖:  123456&amp;lt;!--客户端使用负载均衡组件--&amp;gt;		&amp;lt;dependency&amp;gt;			&amp;lt;groupId&amp;gt;o">
+  <meta name="description" content="Spring Cloud Ribbon  Spring Cloud Ribbon 是一个基于HTTP和TCP的客户端负载均衡工具,基于Netflix Ribbon实现。  在服务消费客户端Spring Boot工程pom.xml中引入Ribbon模块的依赖:  123456&amp;lt;!--客户端使用负载均衡组件--&amp;gt;&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;org.s">
 <meta name="keywords" content="Spring Cloud Ribbon,负载均衡">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Cloud Ribbon 客户端负载均衡的使用">
 <meta property="og:url" content="http://yoursite.com/2019/01/10/springcloud-use-ribbon/index.html">
 <meta property="og:site_name" content="香蕉牌苹果">
-<meta property="og:description" content="Spring Cloud Ribbon  Spring Cloud Ribbon 是一个基于HTTP和TCP的客户端负载均衡工具,基于Netflix Ribbon实现。  在服务消费客户端Spring Boot工程pom.xml中引入Ribbon模块的依赖:  123456&amp;lt;!--客户端使用负载均衡组件--&amp;gt;		&amp;lt;dependency&amp;gt;			&amp;lt;groupId&amp;gt;o">
-<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/peer1.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
-<meta property="og:image" content="http://oov8bjfvw.bkt.clouddn.com/unuseservice.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
-<meta property="og:updated_time" content="2019-01-14T11:03:37.454Z">
+<meta property="og:description" content="Spring Cloud Ribbon  Spring Cloud Ribbon 是一个基于HTTP和TCP的客户端负载均衡工具,基于Netflix Ribbon实现。  在服务消费客户端Spring Boot工程pom.xml中引入Ribbon模块的依赖:  123456&amp;lt;!--客户端使用负载均衡组件--&amp;gt;&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;org.s">
+<meta property="og:updated_time" content="2019-01-16T16:35:43.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Cloud Ribbon 客户端负载均衡的使用">
-<meta name="twitter:description" content="Spring Cloud Ribbon  Spring Cloud Ribbon 是一个基于HTTP和TCP的客户端负载均衡工具,基于Netflix Ribbon实现。  在服务消费客户端Spring Boot工程pom.xml中引入Ribbon模块的依赖:  123456&amp;lt;!--客户端使用负载均衡组件--&amp;gt;		&amp;lt;dependency&amp;gt;			&amp;lt;groupId&amp;gt;o">
-<meta name="twitter:image" content="http://oov8bjfvw.bkt.clouddn.com/peer1.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim">
+<meta name="twitter:description" content="Spring Cloud Ribbon  Spring Cloud Ribbon 是一个基于HTTP和TCP的客户端负载均衡工具,基于Netflix Ribbon实现。  在服务消费客户端Spring Boot工程pom.xml中引入Ribbon模块的依赖:  123456&amp;lt;!--客户端使用负载均衡组件--&amp;gt;&amp;lt;dependency&amp;gt;	&amp;lt;groupId&amp;gt;org.s">
   
     <link rel="alternative" href="/atom.xml" title="香蕉牌苹果" type="application/atom+xml">
   
@@ -179,12 +176,12 @@
 <ul>
 <li>在服务消费客户端Spring Boot工程pom.xml中引入Ribbon模块的依赖:</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!--客户端使用负载均衡组件--&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-ribbon<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!--客户端使用负载均衡组件--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-ribbon<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
 <ul>
 <li>在应用主类通过@EnableEurekaClient注解让该应用注册为Eureka客户端应用,同时在该主类中创建RestTemplate的Spring Bean实例,并通过@LoadBalanced注解开启客户端负载均衡:</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@EnableEurekaClient</span></div><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerApplication</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">	<span class="meta">@LoadBalanced</span></div><div class="line">	<span class="function">RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		SpringApplication.run(ConsumerApplication.class, args);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@EnableEurekaClient</span></div><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerApplication</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Bean</span></div><div class="line">	<span class="meta">@LoadBalanced</span></div><div class="line">	<span class="function">RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		SpringApplication.run(ConsumerApplication.class, args);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>在工程properties中配置服务注册中心,端口等内容:</li>
 </ul>
@@ -194,9 +191,8 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@RequestMapping</span>(value=<span class="string">"/hello"</span>,method = RequestMethod.GET)</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"hello,ribbon connect ok."</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>启动服务端,该服务会注册到指定的注册中心:</li>
+<li>启动服务端,该服务会注册到指定的注册中心</li>
 </ul>
-<p><img src="http://oov8bjfvw.bkt.clouddn.com/peer1.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="peer1"></p>
 <ul>
 <li>创建RibbonConsumerController类并实现/ribbon-consumer接口:</li>
 </ul>
@@ -204,7 +200,6 @@
 <ul>
 <li>启动ribbon客户端应用,该应用也会注册到指定的服务中心</li>
 </ul>
-<p><img src="http://oov8bjfvw.bkt.clouddn.com/unuseservice.jpg?imageView2/0/q/75|watermark/2/text/6aaZ6JWJ54mM6Iu55p6c/font/5a6L5L2T/fontsize/240/fill/IzAwMDAwMA==/dissolve/100/gravity/NorthEast/dx/10/dy/10|imageslim" alt="unuseservice"></p>
 <ul>
 <li>通过向 <a href="http://127.0.0.1:7012/ribbon-consumer" target="_blank" rel="external">http://127.0.0.1:7012/ribbon-consumer</a> 发起GET请求,获取返回结果:</li>
 </ul>
@@ -280,6 +275,11 @@
       </div>
     </a>
   
+  
+    <a href="/2019/01/11/springcloud-use-hystrix/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring Cloud Hystrix 服务容错保护</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -373,6 +373,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -385,15 +389,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java NIO</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Buffer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -413,7 +417,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color1">numpy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -421,11 +425,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">numpy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,6 +458,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">负载均衡</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Cloud Hystrix</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">容错保护</a>
               </li>
             
             <div class="clearfix"></div>

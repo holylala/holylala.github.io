@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | 香蕉牌苹果</title>
+  <title>Spring Cloud Hystrix 服务容错保护 | 香蕉牌苹果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="香蕉牌苹果">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/4/index.html">
+  <meta name="description" content="Spring Cloud Hystrix  Spring Cloud Hystrix 实现了断路器、线程隔离等一系列服务保护功能,基于Netflix的开源框架 Hystrix实现  在服务消费客户端Spring Boot工程pom.xml中引入Spring Cloud Hystrix:  123456&amp;lt;!-- hystrix 熔断器 --&amp;gt;&amp;lt;dependency&amp;gt;    &amp;">
+<meta name="keywords" content="Spring Cloud Hystrix,容错保护">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Cloud Hystrix 服务容错保护">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/springcloud-use-hystrix/index.html">
 <meta property="og:site_name" content="香蕉牌苹果">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="Spring Cloud Hystrix  Spring Cloud Hystrix 实现了断路器、线程隔离等一系列服务保护功能,基于Netflix的开源框架 Hystrix实现  在服务消费客户端Spring Boot工程pom.xml中引入Spring Cloud Hystrix:  123456&amp;lt;!-- hystrix 熔断器 --&amp;gt;&amp;lt;dependency&amp;gt;    &amp;">
+<meta property="og:updated_time" content="2019-01-16T16:36:08.267Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="香蕉牌苹果">
-<meta name="twitter:description" content="个人技术博客">
+<meta name="twitter:title" content="Spring Cloud Hystrix 服务容错保护">
+<meta name="twitter:description" content="Spring Cloud Hystrix  Spring Cloud Hystrix 实现了断路器、线程隔离等一系列服务保护功能,基于Netflix的开源框架 Hystrix实现  在服务消费客户端Spring Boot工程pom.xml中引入Spring Cloud Hystrix:  123456&amp;lt;!-- hystrix 熔断器 --&amp;gt;&amp;lt;dependency&amp;gt;    &amp;">
   
     <link rel="alternative" href="/atom.xml" title="香蕉牌苹果" type="application/atom+xml">
   
@@ -150,152 +152,141 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-springcloud-use-hystrix" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring Cloud Hystrix 服务容错保护
+    </h1>
+  
+
+        
+        <a href="/2019/01/11/springcloud-use-hystrix/" class="archive-article-date">
+  	<time datetime="2019-01-11T14:21:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-11</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Spring-Cloud-Hystrix"><a href="#Spring-Cloud-Hystrix" class="headerlink" title="Spring Cloud Hystrix"></a>Spring Cloud Hystrix</h2><p>  Spring Cloud Hystrix 实现了断路器、线程隔离等一系列服务保护功能,基于Netflix的开源框架 Hystrix实现</p>
+<ul>
+<li>在服务消费客户端Spring Boot工程pom.xml中引入Spring Cloud Hystrix:</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!-- hystrix 熔断器 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>在应用主类使用@EnableCircuitBreaker注解开启断路器功能:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@EnableEurekaClient</span></div><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="meta">@EnableCircuitBreaker</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerApplication</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Bean</span></div><div class="line">	<span class="meta">@LoadBalanced</span></div><div class="line">	<span class="function">RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		SpringApplication.run(ConsumerApplication.class, args);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>新增HelloService,添加相关方法:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Service</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloService</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	RestTemplate restTemplate;</div><div class="line"></div><div class="line">	<span class="meta">@HystrixCommand</span>(fallbackMethod=<span class="string">"helloFallBack"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">helloService</span><span class="params">()</span> </span>&#123;</div><div class="line">		String result = restTemplate.getForEntity(<span class="string">"http://XXX/hello"</span>,String.class).getBody();</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">helloFallBack</span><span class="params">()</span> </span>&#123;</div><div class="line">		logger.info(<span class="string">"helloFallBack going...."</span>);</div><div class="line">		<span class="keyword">return</span> <span class="string">"has error time out maybe"</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>修改RibbonConsumerController类,注入实现的HelloService实例:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RibbonConsumerController</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	RestTemplate restTemplate;</div><div class="line"></div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	HelloService helloService;</div><div class="line"></div><div class="line">	<span class="meta">@RequestMapping</span>(value=<span class="string">"/ribbon-consumer"</span>,method = RequestMethod.GET)</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">helloRibbon</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> helloService.helloService();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>服务端模拟服务阻塞(长时间未响应)的情况:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@RestController</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@RequestMapping</span>(value=<span class="string">"/hello"</span>,method = RequestMethod.GET)</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</div><div class="line"></div><div class="line">		<span class="comment">//模拟耗时操作,有一定概率发生超时</span></div><div class="line">		<span class="keyword">int</span> sleepTime = <span class="keyword">new</span> Random().nextInt(<span class="number">3000</span>);</div><div class="line">		Thread.sleep(sleepTime);</div><div class="line"></div><div class="line">		<span class="keyword">return</span> <span class="string">"hello,ribbon hystrix connect ok."</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Hystrix默认超时时间为2000毫秒</p>
+<ul>
+<li>消费端调用函数增加调用时长的记录:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@HystrixCommand</span>(fallbackMethod=<span class="string">"helloFallBack"</span>,commandKey = <span class="string">"helloKey"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">helloService</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">long</span> start = System.currentTimeMillis();</div><div class="line">	String result = restTemplate.getForEntity(<span class="string">"http://XXX/hello"</span>,String.class).getBody();</div><div class="line">	<span class="keyword">long</span> end = System.currentTimeMillis();</div><div class="line">	logger.info(<span class="string">"helloService client connect cost time:"</span> + (end - start) + <span class="string">" ms."</span>);</div><div class="line">	<span class="keyword">return</span> result;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>重启HELLO-SERVICE 和 RIBBON-CONSUMER 的实例,通过向 <a href="http://127.0.0.1:7012/ribbon-consumer" target="_blank" rel="external">http://127.0.0.1:7012/ribbon-consumer</a> 发起GET请求,获取返回结果:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">服务超时返回结果:</div><div class="line"></div><div class="line">has error time out maybe</div><div class="line"></div><div class="line">服务端日志输出: need cost time:<span class="number">4218</span>ms.</div><div class="line"></div><div class="line">消费端日志输出: helloFallBack going....</div><div class="line">				helloService client connect cost time:<span class="number">4227</span> ms.</div><div class="line"></div><div class="line"></div><div class="line">服务正常时返回结果:</div><div class="line"></div><div class="line">hello,ribbon hystrix connect ok.</div><div class="line"></div><div class="line">服务端日志输出: need cost time:<span class="number">206</span>ms.</div><div class="line"></div><div class="line">消费端日志输出: helloService client connect cost time:<span class="number">219</span> ms.</div></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃苹果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oov8bjfvw.bkt.clouddn.com/alllpay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/29/build-python-devenv/" class="archive-article-date">
-  	<time datetime="2017-04-29T10:44:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/29/build-python-devenv/">搭建Python开发环境(win10)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring Cloud Hystrix</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">容错保护</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/28/redis-uselua/" class="archive-article-date">
-  	<time datetime="2017-04-28T15:40:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-28</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/28/redis-uselua/">在redis中使用Lua脚本</a>
-    </h1>
+    <a href="/2019/01/10/springcloud-use-ribbon/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Spring Cloud Ribbon 客户端负载均衡的使用
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Lua</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/23/redis-usepip/" class="archive-article-date">
-  	<time datetime="2017-04-23T11:12:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/23/redis-usepip/">在Redis中使用管道</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2017/page/5/">5</a><a class="extend next" rel="next" href="/archives/2017/page/5/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -318,8 +309,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
