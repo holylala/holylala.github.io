@@ -554,9 +554,9 @@
     
       <category term="kaggle" scheme="http://yoursite.com/tags/kaggle/"/>
     
-      <category term="matplotlib" scheme="http://yoursite.com/tags/matplotlib/"/>
-    
       <category term="pandas" scheme="http://yoursite.com/tags/pandas/"/>
+    
+      <category term="matplotlib" scheme="http://yoursite.com/tags/matplotlib/"/>
     
   </entry>
   
@@ -660,9 +660,9 @@
     
       <category term="kaggle" scheme="http://yoursite.com/tags/kaggle/"/>
     
-      <category term="numpy" scheme="http://yoursite.com/tags/numpy/"/>
-    
       <category term="matplotlib" scheme="http://yoursite.com/tags/matplotlib/"/>
+    
+      <category term="numpy" scheme="http://yoursite.com/tags/numpy/"/>
     
   </entry>
   
