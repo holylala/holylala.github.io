@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-16T16:36:08.267Z</updated>
+  <updated>2019-01-23T15:20:23.132Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>七牛云图床失效说明</title>
+    <link href="http://yoursite.com/2019/01/23/notice/"/>
+    <id>http://yoursite.com/2019/01/23/notice/</id>
+    <published>2019-01-23T12:21:45.000Z</published>
+    <updated>2019-01-23T15:20:23.132Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>本站使用的七牛云图床因图片访问域名资源被平台回收，造成相关图表显示失效,现正寻找替代图床,逐步恢复中。<br>特此说明,如有其它疑问可邮件联系,感谢支持。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;本站使用的七牛云图床因图片访问域名资源被平台回收，造成相关图表显示失效,现正寻找替代图床,逐步恢复中。&lt;br&gt;特此说明,如有其它疑问可邮件联系,感谢支持。&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+    
+      <category term="blog 说明" scheme="http://yoursite.com/tags/blog-%E8%AF%B4%E6%98%8E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Cloud Hystrix 使用详解</title>
+    <link href="http://yoursite.com/2019/01/23/springcloud-use-hystrix-more/"/>
+    <id>http://yoursite.com/2019/01/23/springcloud-use-hystrix-more/</id>
+    <published>2019-01-23T02:21:45.000Z</published>
+    <updated>2019-01-23T15:20:42.921Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>通过@HystrixCommand注解定义Hystrix命令的实现,实现异步执行的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@HystrixCommand</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">futureHelloService</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">     Future&lt;String&gt; future = <span class="keyword">new</span> AsyncResult&lt;String&gt;() &#123;</div><div class="line">         <span class="meta">@Override</span></div><div class="line">         <span class="function"><span class="keyword">public</span> String <span class="title">invoke</span><span class="params">()</span> </span>&#123;</div><div class="line">             <span class="keyword">return</span> restTemplate.getForEntity(<span class="string">"http://XXXX/hello"</span>,String.class).getBody();</div><div class="line">         &#125;</div><div class="line">     &#125;;</div><div class="line"></div><div class="line">     String result = <span class="keyword">null</span>;</div><div class="line">     <span class="keyword">try</span> &#123;</div><div class="line">         result = future.get();</div><div class="line">     &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">         e.printStackTrace();</div><div class="line">     &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</div><div class="line">         e.printStackTrace();</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> result;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>忽略指定异常类型,不触发后续的fallback逻辑:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@HystrixCommand</span>(ignoreExceptions = &#123;HystrixBadRequestException.class&#125;)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helloServicea</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在fallback实现方法的参数中增加Throwable e对象的定义,在方法内部获取触发服务降级的具体异常内容:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">helloFallBackExceptionCheck</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span> (e <span class="keyword">instanceof</span> RuntimeException) &#123;</div><div class="line">		System.out.println(<span class="string">"has RuntimeException."</span>);</div><div class="line">	&#125;</div><div class="line">	String info = <span class="string">""</span>;</div><div class="line">	<span class="keyword">if</span> (e.getMessage() != <span class="keyword">null</span>) &#123;</div><div class="line">		info = <span class="string">"has exception:"</span> + e.getMessage();</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		info = <span class="string">"read time out."</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> info;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>设置命令名称、分组以及线程池划分,配置资源隔离:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@HystrixCommand</span>(commandKey = <span class="string">"helloService"</span>,groupKey = <span class="string">"helloGroup"</span>,threadPoolKey = <span class="string">"helloThread"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helloServicea</span><span class="params">()</span> </span>&#123;</div><div class="line">		</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;通过@HystrixCommand注解定义Hystrix命令的实现,实现异步执行的方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@HystrixCommand&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;futureHelloService&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     Future&amp;lt;String&amp;gt; future = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; AsyncResult&amp;lt;String&amp;gt;() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;         &lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;         &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;invoke&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; restTemplate.getForEntity(&lt;span class=&quot;string&quot;&gt;&quot;http://XXXX/hello&quot;&lt;/span&gt;,String.class).getBody();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;         &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     String result = &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;         result = future.get();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (InterruptedException e) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;         e.printStackTrace();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (ExecutionException e) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;         e.printStackTrace();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; result;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; &amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Spring Cloud Hystrix" scheme="http://yoursite.com/tags/Spring-Cloud-Hystrix/"/>
+    
+      <category term="容错保护" scheme="http://yoursite.com/tags/%E5%AE%B9%E9%94%99%E4%BF%9D%E6%8A%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Cloud Hystrix 服务容错保护</title>
