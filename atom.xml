@@ -570,9 +570,9 @@
     
       <category term="redis" scheme="http://yoursite.com/tags/redis/"/>
     
-      <category term="Lua" scheme="http://yoursite.com/tags/Lua/"/>
-    
       <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="Lua" scheme="http://yoursite.com/tags/Lua/"/>
     
       <category term="分布式" scheme="http://yoursite.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
