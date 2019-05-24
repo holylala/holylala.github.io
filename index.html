@@ -249,7 +249,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br/>标签<span class="badge">23</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br/>标签<span class="badge">25</span></a>
 
   </li>
         
@@ -268,7 +268,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档<span class="badge">19</span></a>
 
   </li>
 
@@ -311,6 +311,172 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/elasticsearch-use-stock/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="香蕉牌苹果"/>
+      <meta itemprop="description" content="520 人生两喜 代码与你 Every day I miss you three thousand times."/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="香蕉牌苹果"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/20/elasticsearch-use-stock/" class="post-title-link" itemprop="url">Elasticsearch 在股票搜索中的一种应用</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-20 21:20:45" itemprop="dateCreated datePublished" datetime="2019-05-20T21:20:45+08:00">2019-05-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-24 23:41:51" itemprop="dateModified" datetime="2019-05-24T23:41:51+08:00">2019-05-24</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="What’s-Elasticsearch"><a href="#What’s-Elasticsearch" class="headerlink" title="What’s Elasticsearch"></a>What’s Elasticsearch</h3><p>  官方定义:Elasticsearch 是一个分布式、RESTful 风格的搜索和数据分析引擎，能够解决不断涌现出的各种用例。通过 Elasticsearch，能够执行及合并多种类型的搜索（结构化数据、非结构化数据、地理位置、指标）。通过有限状态转换器实现了用于全文检索的倒排索引，实现了用于存储数值数据和地理位置数据的 BKD 树，以及用于分析的列存储。而且由于每个数据都被编入了索引，可以用快到令人惊叹的速度使用和访问所有数据。</p>
+<p>  总结有三点:</p>
+<pre><code>- 分布式实时文件存储，并将每一个字段都编入索引，使其可以被搜索。
+- 实时分析的分布式搜索引擎。
+- 可以扩展到上百台服务器，处理PB级别的结构化或非结构化数据。
+</code></pre><p>  喜欢炒股的同学都知道,当我们使用股票行情软件购买股票时,除了行情首页提供的一些股票分类信息之外有时候会定向搜索一些股票,加入自选重点关注。通常的做法可以通过用户相对模糊的输入,使用SQL模糊匹配查询数据库中相关股票信息并返回结果这种方式略显笨重,准确性也很难保证。本文重点介绍如何使用 Elasticsearch (基于Java Api)更高效更为简便地完成股票信息的检索。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/20/elasticsearch-use-stock/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -389,7 +555,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-24 23:37:17" itemprop="dateModified" datetime="2019-05-24T23:37:17+08:00">2019-05-24</time>
+                <time title="修改时间：2019-05-24 23:46:13" itemprop="dateModified" datetime="2019-05-24T23:46:13+08:00">2019-05-24</time>
               
             
           </span>
@@ -426,7 +592,7 @@
         
           
             <ul>
-<li>本站使用的七牛云图床因图片访问域名资源被平台回收，造成相关图表显示失效,目前使用替代图床 <a href="https://imgchr.com/,相关图片资源逐步恢复中。" target="_blank" rel="external">https://imgchr.com/,相关图片资源逐步恢复中。</a><br>特此说明,如有其它疑问可邮件联系,感谢支持。</li>
+<li>本站使用的七牛云图床因图片访问域名资源被平台回收，造成相关图表显示失效,目前使用替代图床:路过(imgchr.com)相关图片资源逐步恢复中。特此说明,如有其它疑问可邮件联系,感谢支持。</li>
 </ul>
 
           
@@ -621,176 +787,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/springcloud-use-hystrix/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="香蕉牌苹果"/>
-      <meta itemprop="description" content="520 人生两喜 代码与你 Every day I miss you three thousand times."/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="香蕉牌苹果"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/11/springcloud-use-hystrix/" class="post-title-link" itemprop="url">Spring Cloud Hystrix 服务容错保护</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-11 22:21:45" itemprop="dateCreated datePublished" datetime="2019-01-11T22:21:45+08:00">2019-01-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-17 00:36:08" itemprop="dateModified" datetime="2019-01-17T00:36:08+08:00">2019-01-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Spring-Cloud-Hystrix"><a href="#Spring-Cloud-Hystrix" class="headerlink" title="Spring Cloud Hystrix"></a>Spring Cloud Hystrix</h2><p>  Spring Cloud Hystrix 实现了断路器、线程隔离等一系列服务保护功能,基于Netflix的开源框架 Hystrix实现</p>
-<ul>
-<li>在服务消费客户端Spring Boot工程pom.xml中引入Spring Cloud Hystrix:</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!-- hystrix 熔断器 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/11/springcloud-use-hystrix/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -836,7 +837,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -901,7 +902,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

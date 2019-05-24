@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform"/>
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="What’s Elasticsearch  官方定义:Elasticsearch 是一个分布式、RESTful 风格的搜索和数据分析引擎，能够解决不断涌现出的各种用例。通过 Elasticsearch，能够执行及合并多种类型的搜索（结构化数据、非结构化数据、地理位置、指标）。通过有限状态转换器实现了用于全文检索的倒排索引，实现了用于存储数值数据和地理位置数据的 BKD 树，以及用于分析的列存储。而">
+<meta name="keywords" content="Elasticsearch,ELK">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch 在股票搜索中的一种应用">
+<meta property="og:url" content="http://yoursite.com/2019/05/20/elasticsearch-use-stock/index.html">
+<meta property="og:site_name" content="香蕉牌苹果">
+<meta property="og:description" content="What’s Elasticsearch  官方定义:Elasticsearch 是一个分布式、RESTful 风格的搜索和数据分析引擎，能够解决不断涌现出的各种用例。通过 Elasticsearch，能够执行及合并多种类型的搜索（结构化数据、非结构化数据、地理位置、指标）。通过有限状态转换器实现了用于全文检索的倒排索引，实现了用于存储数值数据和地理位置数据的 BKD 树，以及用于分析的列存储。而">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/24/VFW02V.jpg">
+<meta property="og:updated_time" content="2019-05-24T15:41:51.889Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Elasticsearch 在股票搜索中的一种应用">
+<meta name="twitter:description" content="What’s Elasticsearch  官方定义:Elasticsearch 是一个分布式、RESTful 风格的搜索和数据分析引擎，能够解决不断涌现出的各种用例。通过 Elasticsearch，能够执行及合并多种类型的搜索（结构化数据、非结构化数据、地理位置、指标）。通过有限状态转换器实现了用于全文检索的倒排索引，实现了用于存储数值数据和地理位置数据的 BKD 树，以及用于分析的列存储。而">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/05/24/VFW02V.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="香蕉牌苹果" type="application/atom+xml"/>
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/20/elasticsearch-use-stock/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Elasticsearch 在股票搜索中的一种应用 | 香蕉牌苹果</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">香蕉牌苹果</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Senior Web Backend Engineer</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br/>标签<span class="badge">25</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档<span class="badge">19</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/holylala" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/elasticsearch-use-stock/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="香蕉牌苹果"/>
+      <meta itemprop="description" content="520 人生两喜 代码与你 Every day I miss you three thousand times."/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="香蕉牌苹果"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Elasticsearch 在股票搜索中的一种应用
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-20 21:20:45" itemprop="dateCreated datePublished" datetime="2019-05-20T21:20:45+08:00">2019-05-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-24 23:41:51" itemprop="dateModified" datetime="2019-05-24T23:41:51+08:00">2019-05-24</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="What’s-Elasticsearch"><a href="#What’s-Elasticsearch" class="headerlink" title="What’s Elasticsearch"></a>What’s Elasticsearch</h3><p>  官方定义:Elasticsearch 是一个分布式、RESTful 风格的搜索和数据分析引擎，能够解决不断涌现出的各种用例。通过 Elasticsearch，能够执行及合并多种类型的搜索（结构化数据、非结构化数据、地理位置、指标）。通过有限状态转换器实现了用于全文检索的倒排索引，实现了用于存储数值数据和地理位置数据的 BKD 树，以及用于分析的列存储。而且由于每个数据都被编入了索引，可以用快到令人惊叹的速度使用和访问所有数据。</p>
+<p>  总结有三点:</p>
+<pre><code>- 分布式实时文件存储，并将每一个字段都编入索引，使其可以被搜索。
+- 实时分析的分布式搜索引擎。
+- 可以扩展到上百台服务器，处理PB级别的结构化或非结构化数据。
+</code></pre><p>  喜欢炒股的同学都知道,当我们使用股票行情软件购买股票时,除了行情首页提供的一些股票分类信息之外有时候会定向搜索一些股票,加入自选重点关注。通常的做法可以通过用户相对模糊的输入,使用SQL模糊匹配查询数据库中相关股票信息并返回结果这种方式略显笨重,准确性也很难保证。本文重点介绍如何使用 Elasticsearch (基于Java Api)更高效更为简便地完成股票信息的检索。</p>
+  <a id="more"></a>
+<h3 id="搭建Elasticsearch环境-单个服务节点"><a href="#搭建Elasticsearch环境-单个服务节点" class="headerlink" title="搭建Elasticsearch环境(单个服务节点)"></a>搭建Elasticsearch环境(单个服务节点)</h3><ul>
+<li>安装包下载</li>
+</ul>
+<p>通过 <a href="https://www.elastic.co/cn/downloads/past-releases" target="_blank" rel="external">https://www.elastic.co/cn/downloads/past-releases</a> 下载 elasticsearch-2.4.5.tar.gz </p>
+<p>使用非root用户</p>
+<p>解压 tar -xzf elasticsearch-2.4.5.tar.gz 到相关用户目录 比如 /home/XXX/apps</p>
+<ul>
+<li>修改相关配置</li>
+</ul>
+<p>cd 到配置目录 /home/XXX/apps/elasticsearch-2.4.5/config</p>
+<p>修改配置文件 elasticsearch.yml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cluster.name: estest  #定义该服务名字 本文启用一个服务节点进行演示</div><div class="line"></div><div class="line">path.data: /home/XXX/apps/elasticsearch-2.4.5/data #数据保存目录</div><div class="line"></div><div class="line">bootstrap.memory_lock: false         #Centos6不支持SecComp，而ES5.2.0默认bootstrap.system_call_filter为true</div><div class="line"></div><div class="line">bootstrap.system_call_filter: false  #配置bootstrap.system_call_filter为false，注意要在Memory下面</div><div class="line"></div><div class="line">network.host: 0.0.0.0 #取消主机限制</div></pre></td></tr></table></figure>
+<ul>
+<li>启动服务</li>
+</ul>
+<p>bin目录   </p>
+<p>./elasticsearch</p>
+<p>加 -d 后台运行</p>
+<ul>
+<li>修改文件句柄</li>
+</ul>
+<p>提示<br>ERROR: [4] bootstrap checks failed … open too many files … 错误时, 修改系统文件句柄</p>
+<p>切换到root用户</p>
+<p>修改配置sysctl.conf:</p>
+<p>$ vi /etc/sysctl.conf</p>
+<p>添加下面配置：<br>vm.max_map_count = 655360</p>
+<p>退出并保存，然后执行命令：<br>$ sysctl -p</p>
+<p>设置/etc/security/limits.conf</p>
+<ul>
+<li>soft    nofile            65536</li>
+<li>hard    nofile             65536<br>root        hard    nproc           4096<br>hadoop        soft    nproc           4096</li>
+</ul>
+<ul>
+<li>访问服务显示服务信息</li>
+</ul>
+<p>curl <a href="http://服务ip:9200/" target="_blank" rel="external">http://服务ip:9200/</a></p>
+<h3 id="Elasticsearch主要Java-Api的使用"><a href="#Elasticsearch主要Java-Api的使用" class="headerlink" title="Elasticsearch主要Java Api的使用"></a>Elasticsearch主要Java Api的使用</h3><ul>
+<li>使用的api版本</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">elasticsearch.version</span>&gt;</span>2.4.0<span class="tag">&lt;/<span class="name">elasticsearch.version</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>获取客户端资源:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyEsHelper</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Settings settings;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> Client client;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String HOST = <span class="string">"XXX"</span>;  <span class="comment">//主机服务ip</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PORT = <span class="number">9300</span>; <span class="comment">//默认端口</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Client <span class="title">getClient</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> client;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line"></div><div class="line">            settings = Settings.settingsBuilder().put(<span class="string">"cluster.name"</span>, <span class="string">"estest"</span>).build(); <span class="comment">//配置文件 cluster.name 的值</span></div><div class="line">            client = TransportClient.builder().settings(settings).build();</div><div class="line"></div><div class="line">            List&lt;String&gt; list = Arrays.asList(HOST.split(<span class="string">";"</span>));</div><div class="line">            <span class="keyword">for</span> (String h : list) &#123;</div><div class="line">                ((TransportClient) client).addTransportAddress(<span class="keyword">new</span> InetSocketTransportAddress(InetAddress.getByName(h), Integer.valueOf(PORT)));</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">catch</span> (Throwable throwable)&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>股票信息对象:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EStockInfo</span>  </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> String symbol; <span class="comment">//股票代码</span></div><div class="line">    <span class="keyword">public</span> String englishName;</div><div class="line">    <span class="keyword">public</span> String chineseName;</div><div class="line">    <span class="keyword">public</span> String englishkeyword;<span class="comment">//英文简称</span></div><div class="line">    <span class="keyword">public</span> String chinesekeyword;<span class="comment">//拼音简称</span></div><div class="line">    <span class="keyword">public</span> String isOnMarket;  <span class="comment">//1 在市（包括在市和停盘） 0退市</span></div><div class="line"></div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>索引创建与初始化数据:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//importStockInfo("stock","marketinfo") 指定索引名称和索引类型 注意必须为小写</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">importStockInfo</span><span class="params">(String indexName,String indexType)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">       List&lt;EStockInfo&gt; eStockInfoList = getStockInfoList();</div><div class="line"></div><div class="line">       XContentBuilder source = <span class="keyword">null</span>;</div><div class="line">       String jsonStr = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">       <span class="keyword">for</span> (EStockInfo eStockInfo : eStockInfoList) &#123;</div><div class="line">           source = getSource(eStockInfo);</div><div class="line">           jsonStr = source.string();</div><div class="line">           <span class="comment">//索引名称 索引类型 id为symbol</span></div><div class="line">           IndexResponse response = MyEsHelper.client.prepareIndex(indexName, indexType, eStockInfo.getSymbol()).setSource(jsonStr).get();</div><div class="line">           <span class="comment">//索引结果获取</span></div><div class="line">           String index = response.getIndex();</div><div class="line">           String type = response.getType();</div><div class="line">           String id = response.getId();</div><div class="line">           <span class="keyword">long</span> version = response.getVersion();</div><div class="line">           <span class="keyword">boolean</span> created = response.isCreated();</div><div class="line">           System.out.println(index + <span class="string">" : "</span> + type + <span class="string">": "</span> + id + <span class="string">": "</span> + version + <span class="string">": "</span> + created);</div><div class="line">       &#125;</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="comment">//数据初始化</span></div><div class="line"> <span class="function">List&lt;EStockInfo&gt; <span class="title">getStockInfoList</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">       List&lt;EStockInfo&gt; eStockInfos = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">10</span>);</div><div class="line">       EStockInfo eStockInfo1 = <span class="keyword">new</span> EStockInfo(<span class="string">"YRD"</span>,<span class="string">"yirendai"</span>,<span class="string">"宜人贷"</span>,<span class="string">"yrd"</span>,<span class="string">"yrd"</span>,<span class="string">"1"</span>);</div><div class="line">       EStockInfo eStockInfo2 = <span class="keyword">new</span> EStockInfo(<span class="string">"YY"</span>,<span class="string">"happyyy"</span>,<span class="string">"欢聚时代"</span>,<span class="string">"yy"</span>,<span class="string">"hjsd"</span>,<span class="string">"1"</span>);</div><div class="line">       EStockInfo eStockInfo3 = <span class="keyword">new</span> EStockInfo(<span class="string">"YUM"</span>,<span class="string">"best"</span>,<span class="string">"百盛餐饮"</span>,<span class="string">"yum"</span>,<span class="string">"bscy"</span>,<span class="string">"1"</span>);</div><div class="line">       EStockInfo eStockInfo4 = <span class="keyword">new</span> EStockInfo(<span class="string">"LFC"</span>,<span class="string">"chinese"</span>,<span class="string">"中国人寿"</span>,<span class="string">"lfc"</span>,<span class="string">"zgrs"</span>,<span class="string">"1"</span>);</div><div class="line">       EStockInfo eStockInfo5 = <span class="keyword">new</span> EStockInfo(<span class="string">"PPDF"</span>,<span class="string">"money pay"</span>,<span class="string">"拍拍贷"</span>,<span class="string">"ppdf"</span>,<span class="string">"ppd"</span>,<span class="string">"1"</span>);</div><div class="line">       EStockInfo eStockInfo6 = <span class="keyword">new</span> EStockInfo(<span class="string">"ELS"</span>,<span class="string">"hourse hold"</span>,<span class="string">"宜居生活资产信托"</span>,<span class="string">"els"</span>,<span class="string">"yjsh"</span>,<span class="string">"1"</span>);</div><div class="line">       eStockInfos.add(eStockInfo1);</div><div class="line">       eStockInfos.add(eStockInfo2);</div><div class="line">       eStockInfos.add(eStockInfo3);</div><div class="line">       eStockInfos.add(eStockInfo4);</div><div class="line">       eStockInfos.add(eStockInfo5);</div><div class="line">       eStockInfos.add(eStockInfo6);</div><div class="line">       <span class="keyword">return</span> eStockInfos;</div><div class="line"></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>股票信息更新或者新增:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//updateOrImportStockInfo("stock","marketinfo")</span></div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">void</span> <span class="title">updateOrImportStockInfo</span><span class="params">(String indexName, String indexType)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        EStockInfo newStockInfo = getOneStockInfo();</div><div class="line">        GetResponse response = MyEsHelper.client.prepareGet(indexName, indexType, newStockInfo.getSymbol())</div><div class="line">                .setOperationThreaded(<span class="keyword">false</span>) <span class="comment">//一个线程获取</span></div><div class="line">                .get();</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (response.isExists()) &#123; <span class="comment">//更新数据</span></div><div class="line"></div><div class="line">            UpdateResponse updateResponse = MyEsHelper.client.prepareUpdate(indexName, indexType, newStockInfo.getSymbol())</div><div class="line">                    .setDoc(getSource(newStockInfo).string()).get();</div><div class="line">            System.out.println(<span class="string">"update result:&gt;&gt;"</span>+ updateResponse.isCreated());</div><div class="line"></div><div class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">//新增</span></div><div class="line"></div><div class="line">            IndexResponse indexResponse = MyEsHelper.client.prepareIndex(indexName, indexType, newStockInfo.getSymbol()).setSource(getSource(newStockInfo).string()).get();</div><div class="line">            <span class="comment">//索引结果获取</span></div><div class="line">            String index = indexResponse.getIndex();</div><div class="line">            String type = indexResponse.getType();</div><div class="line">            String id = indexResponse.getId();</div><div class="line">            <span class="keyword">long</span> version = indexResponse.getVersion();</div><div class="line">            <span class="keyword">boolean</span> created = indexResponse.isCreated();</div><div class="line">            System.out.println(index + <span class="string">" : "</span> + type + <span class="string">": "</span> + id + <span class="string">": "</span> + version + <span class="string">": "</span> + created);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>删除某只股票数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//deleteStockInfo("stock","marketinfo","ISRG")</span></div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">void</span> <span class="title">deleteStockInfo</span><span class="params">(String indexName, String indexType, String symbol)</span> </span>&#123;</div><div class="line"></div><div class="line">    DeleteResponse response = MyEsHelper.client.prepareDelete(indexName, indexType, symbol).get();</div><div class="line">    System.out.println(<span class="string">"delete:&gt;&gt;&gt;"</span> + response.getId());</div><div class="line"></div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>检索股票信息</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//不指定索引名称和类型</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">searchStockInfo</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">//查询条件</span></div><div class="line">        QueryBuilder queryBuilder = QueryBuilders.queryStringQuery(<span class="string">"*y*"</span>); <span class="comment">//搜索非索引值的内容 模糊匹配 未指定特定索引值和类型</span></div><div class="line"></div><div class="line">		<span class="comment">//QueryBuilder queryBuilder = QueryBuilders.matchQuery("isOnMarket", "1 0");//全文搜索 词条isOnMarket 1 或者 0 的值都能匹配到</span></div><div class="line"></div><div class="line">        SearchRequestBuilder requestBuilder = MyEsHelper.client.prepareSearch().setQuery(queryBuilder).setSize(<span class="number">10</span>);<span class="comment">//结果集大小 获取符合查询条件的结果集</span></div><div class="line"></div><div class="line">        MultiSearchResponse multiResponse = MyEsHelper.client.prepareMultiSearch().add(requestBuilder)</div><div class="line">                .execute().actionGet();</div><div class="line"></div><div class="line"></div><div class="line">        <span class="keyword">long</span> nbHits = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (MultiSearchResponse.Item item : multiResponse.getResponses()) &#123;</div><div class="line">            SearchResponse response = item.getResponse();</div><div class="line">            nbHits = response.getHits().getTotalHits();</div><div class="line">            System.out.println(<span class="string">"get TotalHists:&gt;&gt;"</span> + nbHits);</div><div class="line">            SearchHit[] hits = response.getHits().getHits();</div><div class="line">            <span class="keyword">if</span> (hits!=<span class="keyword">null</span> &amp;&amp; hits.length &gt; <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">for</span> (SearchHit searchHit : hits) &#123;</div><div class="line">                    System.out.println(<span class="string">"query result:&gt;&gt;&gt;"</span>);</div><div class="line">                    System.out.println(<span class="string">"score:&gt;&gt;&gt;"</span> + searchHit.getScore() + <span class="string">" info:&gt;&gt;&gt;"</span> + searchHit.getSourceAsString());</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line"><span class="comment">//全文检索 指定索引值和索引类型 searchStockInfoUseMatchQuery("stock","marketinfo");</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">searchStockInfoUseMatchQuery</span><span class="params">(String stock, String marketinfo)</span> </span>&#123;</div><div class="line"></div><div class="line">        SearchResponse searchResponse = MyEsHelper.client.prepareSearch(<span class="string">"stock"</span>).setTypes(<span class="string">"marketinfo"</span>)</div><div class="line">                .setQuery(QueryBuilders.matchQuery(<span class="string">"symbol"</span>, <span class="string">"YY YRD"</span>)) <span class="comment">//词条symbol 是YY 和 YRD的数据</span></div><div class="line">                .get();</div><div class="line">        SearchHits hits = searchResponse.getHits();</div><div class="line">        System.out.println(JSON.toJSONString(hits));</div><div class="line"></div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="comment">//模糊查询，这个用到了莱文斯坦算法，用于计算两个字符串的相似度，如果在设置的相似度之内，那么会被命中</span></div><div class="line"> <span class="comment">//searchStockInfoUseFuzzyQuery("stock","marketinfo");</span></div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">void</span> <span class="title">searchStockInfoUseFuzzyQuery</span><span class="params">(String stock, String marketinfo)</span> </span>&#123;</div><div class="line">        SearchResponse searchResponse = MyEsHelper.client.prepareSearch(stock).setTypes(marketinfo)</div><div class="line">                .setQuery(QueryBuilders.fuzzyQuery(<span class="string">"chinesekeyword"</span>, <span class="string">"yd"</span>).fuzziness(Fuzziness.ONE)) <span class="comment">//yd 和 yrd 相似度是1 命中成功</span></div><div class="line">                .get();</div><div class="line">        SearchHits hits = searchResponse.getHits();</div><div class="line">        System.out.println(JSON.toJSONString(hits));</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="comment">//正则表达式匹配查询</span></div><div class="line">  <span class="comment">//searchStockInfoUseRegexQuery("stock","marketinfo");</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">searchStockInfoUseRegexQuery</span><span class="params">(String stock, String marketinfo)</span> </span>&#123;</div><div class="line">        SearchResponse searchResponse = MyEsHelper.client.prepareSearch(stock).setTypes(marketinfo)</div><div class="line">                .setQuery(QueryBuilders.regexpQuery(<span class="string">"chinesekeyword"</span>, <span class="string">"y[a-z]&#123;1&#125;d?"</span>)) <span class="comment">//匹配yrd</span></div><div class="line">                .get();</div><div class="line">        SearchHits hits = searchResponse.getHits();</div><div class="line">        System.out.println(JSON.toJSONString(hits));</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="前端展示结果示例"><a href="#前端展示结果示例" class="headerlink" title="前端展示结果示例"></a>前端展示结果示例</h3><p><img src="https://s2.ax1x.com/2019/05/24/VFW02V.jpg" alt="前端展示结果示例"></p>
+<h3 id="下期专题"><a href="#下期专题" class="headerlink" title="下期专题"></a>下期专题</h3><ul>
+<li><p>Elasticsearch集群服务环境的搭建,多个服务节点</p>
+</li>
+<li><p>Elasticsearch 5.X 版本的使用</p>
+</li>
+<li><p>ELK日志采集分析组件的使用</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Elasticsearch/" rel="tag"># Elasticsearch</a>
+          
+            <a href="/tags/ELK/" rel="tag"># ELK</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/23/notice/" rel="prev" title="七牛云图床失效说明">
+                七牛云图床失效说明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="香蕉牌苹果"/>
+            
+              <p class="site-author-name" itemprop="name">香蕉牌苹果</p>
+              <div class="site-description motion-element" itemprop="description">520 人生两喜 代码与你 Every day I miss you three thousand times.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/holylala" title="GitHub &rarr; https://github.com/holylala" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:huangzhenqiong@sina.cn" title="E-Mail &rarr; mailto:huangzhenqiong@sina.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/KaSunholy" title="Twitter &rarr; https://twitter.com/KaSunholy" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#What’s-Elasticsearch"><span class="nav-number">1.</span> <span class="nav-text">What’s Elasticsearch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建Elasticsearch环境-单个服务节点"><span class="nav-number">2.</span> <span class="nav-text">搭建Elasticsearch环境(单个服务节点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elasticsearch主要Java-Api的使用"><span class="nav-number">3.</span> <span class="nav-text">Elasticsearch主要Java Api的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端展示结果示例"><span class="nav-number">4.</span> <span class="nav-text">前端展示结果示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下期专题"><span class="nav-number">5.</span> <span class="nav-text">下期专题</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">香蕉牌苹果</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
