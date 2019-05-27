@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="香蕉牌苹果">
 <meta property="og:description" content="What’s Elasticsearch  官方定义:Elasticsearch 是一个分布式、RESTful 风格的搜索和数据分析引擎，能够解决不断涌现出的各种用例。通过 Elasticsearch，能够执行及合并多种类型的搜索（结构化数据、非结构化数据、地理位置、指标）。通过有限状态转换器实现了用于全文检索的倒排索引，实现了用于存储数值数据和地理位置数据的 BKD 树，以及用于分析的列存储。而">
 <meta property="og:image" content="https://s2.ax1x.com/2019/05/24/VFW02V.md.jpg">
-<meta property="og:updated_time" content="2019-05-26T14:09:23.899Z">
+<meta property="og:updated_time" content="2019-05-27T15:24:07.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elasticsearch 在股票搜索中的一种应用">
 <meta name="twitter:description" content="What’s Elasticsearch  官方定义:Elasticsearch 是一个分布式、RESTful 风格的搜索和数据分析引擎，能够解决不断涌现出的各种用例。通过 Elasticsearch，能够执行及合并多种类型的搜索（结构化数据、非结构化数据、地理位置、指标）。通过有限状态转换器实现了用于全文检索的倒排索引，实现了用于存储数值数据和地理位置数据的 BKD 树，以及用于分析的列存储。而">
@@ -390,7 +390,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-26 22:09:23" itemprop="dateModified" datetime="2019-05-26T22:09:23+08:00">2019-05-26</time>
+                <time title="修改时间：2019-05-27 23:24:07" itemprop="dateModified" datetime="2019-05-27T23:24:07+08:00">2019-05-27</time>
               
             
           </span>
@@ -476,6 +476,14 @@
 <li>股票信息对象:</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EStockInfo</span>  </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> String symbol; <span class="comment">//股票代码</span></div><div class="line">    <span class="keyword">public</span> String englishName;</div><div class="line">    <span class="keyword">public</span> String chineseName;</div><div class="line">    <span class="keyword">public</span> String englishkeyword;<span class="comment">//英文简称</span></div><div class="line">    <span class="keyword">public</span> String chinesekeyword;<span class="comment">//拼音简称</span></div><div class="line">    <span class="keyword">public</span> String isOnMarket;  <span class="comment">//1 在市（包括在市和停盘） 0退市</span></div><div class="line"></div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>getOneStockInfo 方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> EStockInfo <span class="title">getOneStockInfo</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//修改某个股票信息</span></div><div class="line">    <span class="comment">//EStockInfo updatEStockInfo =  new EStockInfo("ELS","hourse hold","宜居生活资产信托","els","yjsh","0");</span></div><div class="line">    </div><div class="line">    <span class="comment">//新增某个股票信息</span></div><div class="line">    EStockInfo newEStockInfo =  <span class="keyword">new</span> EStockInfo(<span class="string">"ISRG"</span>,<span class="string">"machine robot"</span>,<span class="string">"达芬奇手术机器人"</span>,<span class="string">"isrg"</span>,<span class="string">"dfq"</span>,<span class="string">"1"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> newEStockInfo;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>getSource 方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">static</span> XContentBuilder <span class="title">getSource</span><span class="params">(EStockInfo eStockInfo)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        XContentBuilder source = XContentFactory.jsonBuilder()</div><div class="line">                .startObject()</div><div class="line">                .field(<span class="string">"symbol"</span>, eStockInfo.getSymbol())</div><div class="line">                .field(<span class="string">"englishName"</span>, eStockInfo.getEnglishName())</div><div class="line">                .field(<span class="string">"chineseName"</span>, eStockInfo.getChineseName())</div><div class="line">                .field(<span class="string">"englishkeyword"</span>, eStockInfo.getEnglishkeyword())</div><div class="line">                .field(<span class="string">"chinesekeyword"</span>, eStockInfo.getChinesekeyword())</div><div class="line">                .field(<span class="string">"isOnMarket"</span>, eStockInfo.getIsOnMarket())</div><div class="line">                .endObject();</div><div class="line">        <span class="keyword">return</span> source;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>索引创建与初始化数据:</li>
 </ul>
