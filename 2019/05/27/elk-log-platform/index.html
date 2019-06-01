@@ -99,17 +99,17 @@
 
 
 
-  <meta name="description" content="ELK组件套装  ELK 由三部分组成Elasticsearch、Logstash、Kibana, Elasticsearch是一个近似实时的搜索平台,它让你以前所未有的速度处理大数据成为可能。  Logstash：日志收集工具，可以从本地磁盘，网络服务（自己监听端口，接受用户日志），消息队列中收集各种各样的日志，然后进行过滤分析，并将日志输出到Elasticsearch中。 Elasticsea">
+  <meta name="description" content="ELK组件套装  ELK 由三部分组成Elasticsearch、Logstash、Kibana, Elasticsearch是一个近似实时的搜索平台,它让你以前所未有的速度处理大数据成为可能。  Logstash：日志收集工具，可以从本地磁盘，网络服务（自己监听端口，接受用户日志）,消息队列中收集各种各样的日志,然后进行过滤分析，并将日志输出到Elasticsearch中。 Elasticsea">
 <meta name="keywords" content="Elasticsearch,ELK">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用ELK(ElasticSearch+Logstash+Kibana)搭建实时日志分析平台">
 <meta property="og:url" content="http://yoursite.com/2019/05/27/elk-log-platform/index.html">
 <meta property="og:site_name" content="香蕉牌苹果">
-<meta property="og:description" content="ELK组件套装  ELK 由三部分组成Elasticsearch、Logstash、Kibana, Elasticsearch是一个近似实时的搜索平台,它让你以前所未有的速度处理大数据成为可能。  Logstash：日志收集工具，可以从本地磁盘，网络服务（自己监听端口，接受用户日志），消息队列中收集各种各样的日志，然后进行过滤分析，并将日志输出到Elasticsearch中。 Elasticsea">
-<meta property="og:updated_time" content="2019-06-01T13:55:45.422Z">
+<meta property="og:description" content="ELK组件套装  ELK 由三部分组成Elasticsearch、Logstash、Kibana, Elasticsearch是一个近似实时的搜索平台,它让你以前所未有的速度处理大数据成为可能。  Logstash：日志收集工具，可以从本地磁盘，网络服务（自己监听端口，接受用户日志）,消息队列中收集各种各样的日志,然后进行过滤分析，并将日志输出到Elasticsearch中。 Elasticsea">
+<meta property="og:updated_time" content="2019-06-01T14:07:09.766Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用ELK(ElasticSearch+Logstash+Kibana)搭建实时日志分析平台">
-<meta name="twitter:description" content="ELK组件套装  ELK 由三部分组成Elasticsearch、Logstash、Kibana, Elasticsearch是一个近似实时的搜索平台,它让你以前所未有的速度处理大数据成为可能。  Logstash：日志收集工具，可以从本地磁盘，网络服务（自己监听端口，接受用户日志），消息队列中收集各种各样的日志，然后进行过滤分析，并将日志输出到Elasticsearch中。 Elasticsea">
+<meta name="twitter:description" content="ELK组件套装  ELK 由三部分组成Elasticsearch、Logstash、Kibana, Elasticsearch是一个近似实时的搜索平台,它让你以前所未有的速度处理大数据成为可能。  Logstash：日志收集工具，可以从本地磁盘，网络服务（自己监听端口，接受用户日志）,消息队列中收集各种各样的日志,然后进行过滤分析，并将日志输出到Elasticsearch中。 Elasticsea">
 
 
 
@@ -388,7 +388,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-01 21:55:45" itemprop="dateModified" datetime="2019-06-01T21:55:45+08:00">2019-06-01</time>
+                <time title="修改时间：2019-06-01 22:07:09" itemprop="dateModified" datetime="2019-06-01T22:07:09+08:00">2019-06-01</time>
               
             
           </span>
@@ -424,8 +424,8 @@
       
         <h3 id="ELK组件套装"><a href="#ELK组件套装" class="headerlink" title="ELK组件套装"></a>ELK组件套装</h3><p>  ELK 由三部分组成Elasticsearch、Logstash、Kibana, Elasticsearch是一个近似实时的搜索平台,它让你以前所未<br>有的速度处理大数据成为可能。</p>
 <ul>
-<li>Logstash：日志收集工具，可以从本地磁盘，网络服务（自己监听端口，接受用户日志），消息队列中收集各种各样的日<br>志，然后进行过滤分析，并将日志输出到Elasticsearch中。</li>
-<li>Elasticsearch：日志分布式存储/搜索工具，原生支持集群功能，可以将指定时间的日志生成一个索引，加快日志查询和访<br>问。</li>
+<li>Logstash：日志收集工具，可以从本地磁盘，网络服务（自己监听端口，接受用户日志）,消息队列中收集各种各样的日志,然后进行过滤分析，并将日志输出到Elasticsearch中。</li>
+<li>Elasticsearch：日志分布式存储/搜索工具,原生支持集群功能,可以将指定时间的日志生成一个索引,加快日志查询和访问。</li>
 <li>Kibana：可视化日志Web展示工具，对Elasticsearch中存储的日志进行展示，还可以生成炫丽的仪表盘。</li>
 </ul>
 <p>使用ELK可以高效地完成日志的收集和方便地完成关键日志的搜索,解决日志种类多且分散在不同的位置(可能是一个集群环境几十台主机或者多个不同业务的集群)难以统一查询的问题,使得零散的日志记录能够统一的在一个平台上进行收集检索和分析,极大提高了日志搜索和定位的效率。</p>
@@ -438,15 +438,14 @@
 <li>Elasticsearch-6.4.3 安装</li>
 </ul>
 <p>使用非root用户,从5.0开始，ElasticSearch 安全级别提高了，不允许采用root帐号启动</p>
-<p>1.解压安装包</p>
+<ol>
+<li>解压安装包</li>
+</ol>
 <p>tar -xzf elasticsearch-6.4.3.tar.gz</p>
 <ol>
 <li>修改配置 </li>
 </ol>
-<p>elasticsearch的主配置文件在config/elasticsearch.yml中，该配置文件包含集群、节点、网络和数据存储等等的重要配置。</p>
-<p>数据存储位置(单个目录设置)<br>path.data: /XXX/data</p>
-<p>找到network.host这行配置，把注释解开，值设置为0.0.0.0 取消主机限制<br>network.host: 0.0.0.0</p>
-<p>Centos6不支持SecComp，而ES5.2.0默认bootstrap.system_call_filter为true<br>禁用：在elasticsearch.yml中配置bootstrap.system_call_filter为false，注意要在Memory下面:<br>bootstrap.memory_lock: false<br>bootstrap.system_call_filter: false</p>
+<p>elasticsearch的主配置文件在config/elasticsearch.yml中，该配置文件包含集群、节点、网络和数据存储等等的重要配置。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">数据存储位置(单个目录设置) </div><div class="line">path.data: /XXX/data</div><div class="line"></div><div class="line">找到network.host这行配置，把注释解开，值设置为0.0.0.0 取消主机限制</div><div class="line">network.host: 0.0.0.0</div><div class="line"></div><div class="line">Centos6不支持SecComp，而ES5.2.0默认bootstrap.system_call_filter为true</div><div class="line">禁用：在elasticsearch.yml中配置bootstrap.system_call_filter为false，注意要在Memory下面: </div><div class="line">bootstrap.memory_lock: false </div><div class="line">bootstrap.system_call_filter: false</div></pre></td></tr></table></figure></p>
 <ol>
 <li>启动</li>
 </ol>
