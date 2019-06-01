@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-01T14:12:06.208Z</updated>
+  <updated>2019-06-01T14:15:25.899Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2019/05/27/elk-log-platform/"/>
     <id>http://yoursite.com/2019/05/27/elk-log-platform/</id>
     <published>2019-05-27T13:20:45.000Z</published>
-    <updated>2019-06-01T14:12:06.208Z</updated>
+    <updated>2019-06-01T14:15:25.899Z</updated>
     
     <content type="html"><![CDATA[<h3 id="ELK组件套装"><a href="#ELK组件套装" class="headerlink" title="ELK组件套装"></a>ELK组件套装</h3><p>  ELK 由三部分组成Elasticsearch、Logstash、Kibana, Elasticsearch是一个近似实时的搜索平台,它让你以前所未<br>有的速度处理大数据成为可能。</p>
 <ul>
@@ -78,7 +78,7 @@
 <p>3.启动</p>
 <p>./bin/kibana</p>
 <p>4.访问</p>
-<p><a href="http://10.10.105.170:5601" target="_blank" rel="external">http://10.10.105.170:5601</a></p>
+<p><a href="http://xx.xx.xx.xx:5601" target="_blank" rel="external">http://xx.xx.xx.xx:5601</a></p>
 <p>5.配置 kibana 定义索引值</p>
 <p>Management –&gt; Create index pattern (配置 index pattern apple-index-*)</p>
 <ul>
